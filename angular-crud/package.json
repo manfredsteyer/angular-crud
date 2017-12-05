@@ -1,15 +1,15 @@
 {
   "name": "angular-crud",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine **/*_spec.js"
   },
   "keywords": [
-    "schematics"
+    "schematics", "Angular", "CRUD", "generate"
   ],
-  "author": "",
+  "author": "Manfred Steyer",
   "license": "MIT",
   "schematics": "./src/collection.json",
   "devDependencies": {
@@ -24,5 +24,10 @@
   },
   "dependencies": {
     "json5": "^0.5.1"
+  },
+  "repository": { 
+    "type" : "git", 
+    "url" : "https://github.com/manfredsteyer/angular-crud"
   }
+
 }
