@@ -1,0 +1,48 @@
+<div class="card">
+    
+      <div class="header">
+        <h2 class="title"><%=model.title%></h2>
+      </div>
+      <div class="content">
+    
+        <form #f="ngForm">
+<% for (let field of getFilterFields(model)) { %>
+          <div class="form-group">
+            <label><%=field.label%>:</label>
+            <input [(ngModel)]="filter.<%=field.name%>" name="<%=field.name%>" class="form-control">
+          </div>
+<% } %>
+          <div class="form-group">
+            <button (click)="search()" [disabled]="!f?.valid" class="btn btn-default">
+              Search
+            </button>
+            <a [routerLink]="['../<%=camelize(name)%>','new']" class="btn btn-default">
+                New
+            </a>
+  
+          </div>
+          
+        </form>
+    
+      </div>
+    </div>
+    
+    <div class="card" *ngIf="<%=camelize(name)%>List.length > 0">
+    
+      <table class="table table-contensed" >
+        <thead>
+        <tr><% for (let field of model.fields) { %>            
+            <th><%=field.label%></th><% } %>
+        </tr>
+        </thead>
+        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>"><% for (let field of model.fields) { %>
+            <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
+            <td>
+                <% let id = getId(model); %>
+                <a [routerLink]="['../<%=camelize(name)%>', item.<%=id.name%> ]">Details</a> |           
+                <a (click)="select(item)">Select</a>
+            </td>
+        </tr>
+      </table>
+    
+    </div>

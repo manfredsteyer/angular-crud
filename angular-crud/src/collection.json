@@ -1,0 +1,10 @@
+{
+    "schematics": {
+      "menu": {
+        "aliases": [ "crud-module" ],
+        "factory": "./crud-module",
+        "description": "Generates a crud module",
+        "schema": "./crud-module/schema.json"
+      }
+    }
+}

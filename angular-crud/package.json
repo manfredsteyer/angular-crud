@@ -1,0 +1,28 @@
+{
+  "name": "angular-crud",
+  "version": "0.0.3",
+  "description": "A schematics",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine **/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "devDependencies": {
+    "@angular-devkit/core": "^0.0.22",
+    "@angular-devkit/schematics": "^0.0.38",
+    "@schematics/angular": "0.1.8",
+    "@types/jasmine": "^2.6.0",
+    "@types/json5": "0.0.29",
+    "@types/node": "^8.0.31",
+    "jasmine": "^2.8.0",
+    "typescript": "^2.4.0"
+  },
+  "dependencies": {
+    "json5": "^0.5.1"
+  }
+}
