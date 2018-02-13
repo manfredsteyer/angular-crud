@@ -10,7 +10,7 @@
 <% for (let field of model.fields) { %>                
             <div class="form-group">
                 <label><%=field.label%>:</label>
-                <%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly) { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
+                <%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'Date'){ %><input type='date' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } else if (!field.readonly && field.type === 'number'){ %><input type='number' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% }else { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
             </div>
 <% } %>        
             <div class="form-group">
