@@ -22,6 +22,6 @@ export interface Field {
     show: ShowOptions[] | string;
 }
 
-export type TypeOptions = 'text' | 'number';
+export type TypeOptions = 'text' | 'number' | 'Date';
 export type ShowOptions = 'filter' | 'list' | 'insert' | 'update';
 export type ControlOptions = 'text';
