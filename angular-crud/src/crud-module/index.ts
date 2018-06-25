@@ -1,6 +1,6 @@
 import { chain, mergeWith, SchematicsException } from '@angular-devkit/schematics';
 import { dasherize, classify, camelize, capitalize } from '@angular-devkit/core';
-import { MenuOptions } from './schema';
+
 import { apply, move, Rule, template, url, branchAndMerge, Tree, SchematicContext } from '@angular-devkit/schematics';
 import { normalize } from '@angular-devkit/core';
 import { addImportToParentModule } from '../utils/ng-module-utils';
@@ -8,6 +8,8 @@ import { findModuleFromOptions } from '../schematics-angular-utils/find-module';
 
 import * as JSON5 from 'json5';
 import * as crudModelUtils from '../utils/crud-model-utils'
+
+import { MenuOptions } from './schema';
 import { CrudModel } from './model';
 
 const stringUtils = { dasherize, classify, camelize, capitalize };
@@ -47,7 +49,5 @@ export default function (options: MenuOptions): Rule {
       ]);
 
       return rule(host, context);
-      
-
     }
 }
