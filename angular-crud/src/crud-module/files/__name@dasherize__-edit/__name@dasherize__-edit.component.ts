@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { <%= classify(name) %>Service } from '../<%=dasherize(name)%>.service';
 import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
 import { map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
 
 @Component({
   selector: '<%=dasherize(name)%>-edit',

@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="header">
+    <h1 class="title">Welcome {{userName}}</h1>
+  </div>
+  <div class="content">
+
+    <div *ngIf="needsLogin" class="alert alert-warning">
+      You have been redirected to this page because you don't have the necessary
+      rights for the reqeusted action. Login with a respective user account!
+    </div>
+
+    <button (click)="login()" class="btn btn-default">Login</button>
+    <button (click)="logout()" class="btn btn-default">Logout</button>
+
+    <!--
+    <tabbed-pane [activeId]="0">
+        <tab title="Booked" [id]="0">
+            This page could display all booked passengers ...
+        </tab>
+        <tab title="Checked in" [id]="1">
+            This page could display all checked in passengers ...
+        </tab>
+
+        <tab title="Boarded" [id]="2">
+            This page could display all boarded passengers ...
+        </tab>
+    </tabbed-pane>
+    -->
+  </div>
+
+</div>
+
+

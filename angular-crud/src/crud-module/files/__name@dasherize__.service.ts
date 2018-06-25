@@ -1,7 +1,7 @@
 import { <%= classify(name) %> } from './<%=dasherize(name)%>';
 import { <%= classify(name) %>Filter } from './<%=dasherize(name)%>-filter';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
