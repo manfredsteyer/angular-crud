@@ -1,6 +1,6 @@
 {
   "name": "angular-crud",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Generating CRUD applications with Angular, the CLI and Schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -16,14 +16,14 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "devDependencies": {
-    "@angular-devkit/core": "^0.0.22",
-    "@angular-devkit/schematics": "^0.0.38",
-    "@schematics/angular": "0.1.8",
+    "@angular-devkit/core": "^0.6.8",
+    "@angular-devkit/schematics": "^0.6.8",
     "@types/jasmine": "^2.6.0",
-    "@types/json5": "0.0.29",
     "@types/node": "^8.0.31",
     "jasmine": "^2.8.0",
-    "typescript": "^2.4.0"
+    "typescript": "^2.5.2",
+    "@schematics/angular": "0.6.8",
+    "@types/json5": "0.0.29"
   },
   "dependencies": {
     "json5": "^0.5.1"

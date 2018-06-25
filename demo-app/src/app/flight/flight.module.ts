@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { FlightListComponent } from './flight-list.component';
-import { FlightEditComponent } from './flight-edit.component';
+import { FlightListComponent } from './flight-list/flight-list.component';
+import { FlightEditComponent } from './flight-edit/flight-edit.component';
 import { FlightService } from './flight.service';
 import { FLIGHT_ROUTES } from './flight.routes';
 

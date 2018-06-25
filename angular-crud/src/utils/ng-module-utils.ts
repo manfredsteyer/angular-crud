@@ -11,7 +11,7 @@
 import { Rule, Tree, SchematicsException } from '@angular-devkit/schematics';
 import { AddImportToModuleContext } from './add-to-module-context';
 import * as ts from 'typescript';
-import { dasherize, classify } from '@angular-devkit/core';
+import { strings as stringUtils } from '@angular-devkit/core';
 
 // Referencing forked and copied private APIs 
 import { ModuleOptions, buildRelativePath } from '../schematics-angular-utils/find-module';
@@ -19,7 +19,6 @@ import { addImportToModule } from '../schematics-angular-utils/ast-utils';
 import { InsertChange } from '../schematics-angular-utils/change';
 
 
-const stringUtils = { dasherize, classify };
 
 export function addImportToParentModule(options: ModuleOptions): Rule {
   return (host: Tree) => {

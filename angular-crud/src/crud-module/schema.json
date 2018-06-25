@@ -6,11 +6,23 @@
     "properties": {
       "name": {
         "type": "string",
-        "default": "name"
+        "$default": {
+          "$source": "argv",
+          "index": 0
+        }
+      },
+      "project": {
+        "type": "string",
+        "description": "The name of the project.",
+        "$default": {
+          "$source": "projectName"
+        }        
       },
       "path": {
         "type": "string",
-        "default": "app"
+        "format": "path",
+        "description": "The path to create the component.",
+        "visible": false
       },
       "appRoot": {
         "type": "string"

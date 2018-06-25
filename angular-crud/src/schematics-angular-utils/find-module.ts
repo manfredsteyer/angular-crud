@@ -27,7 +27,8 @@ export function findModuleFromOptions(host: Tree, options: ModuleOptions, parent
     return undefined;
   }
 
-  let pathToCheck = (options.sourceDir || '') + '/' + (options.path || '');
+  let pathToCheck = (options.path || '');
+  console.info('pathToCheck', pathToCheck);
   return normalize(findModule(host, pathToCheck, parent));
 }
 

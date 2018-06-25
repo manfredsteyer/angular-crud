@@ -92,9 +92,9 @@ You can fork this repo and extend the generated code using Schematics. Infos abo
 - [Generating Custom Code With The Angular CLI And Schematics](https://softwarearchitekt.at/post/2017/10/29/generating-custom-code-with-the-angular-cli-and-schematics.aspx)
 - [Automatically Updating Angular Modules With Schematics And The CLI](https://softwarearchitekt.at/post/2017/12/01/generating-angular-code-with-schematics-part-ii-modifying-ngmodules.aspx)
 
-## Open Points and Call for Contributions
+## Coming Features and Call for Contributions
 
-This is a early implementation that shows the potential of this approach and provides a wireframe for your own extensions. The following features are planned for the next time:
+The following features are planned for the next time:
 
 - Deleting records
 - Validation

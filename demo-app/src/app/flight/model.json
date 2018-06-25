@@ -10,50 +10,28 @@
     ],
     "fields": [
       {
-        name: "id",
-        isId: true,
-        type: "number",
-        label: "Id",
-        default: 0,
-        control: "text",
-        /* 
-        // not implemented yet
-        validation: "x y z",
-        show: "list detail",
-        lookup: {
-           multi: true,
-           url: "http://www.angular.at/api/flight", 
-           label: "name",
-           value: "id",
-           exact: true
-        }
-        */
+        "name": "id",
+        "isId": true,
+        "type": "number",
+        "label": "Id",
+        "default": 0,
+        "control": "text"
       },
       {
-        name: "from",
-        type: "string",
-        label: "From"
+        "name": "from",
+        "type": "string",
+        "label": "From"
       },
       {
-        name: "to",
-        type: "string",
-        label: "To"
+        "name": "to",
+        "type": "string",
+        "label": "To"
       },
       {
-        name: "date",
-        type: "string",
-        control: "date",
-        label: "Date"
+        "name": "date",
+        "type": "string",
+        "control": "date",
+        "label": "Date"
       } 
-    ],
-    /*
-    // Not implemented yet
-    "links": [
-      {
-         label: "Neighbor",
-         show: "list insert update list-bottom",
-         route: ["/x", "$.id"]
-      }
     ]
-    */
 }
