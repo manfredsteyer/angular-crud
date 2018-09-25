@@ -21,12 +21,13 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
    ```
    cd angular-crud
+   cd demo-cli6
    npm install
    ```
 
    Note, that this also installs ``angular-crud``.
 
-3. Switch to the folder ``src\app\hotel`` and create a file ``model.json`` with following content:
+3. Switch to the folder ``src\app`` and create a sub-folder ``hotel`` with a file ``model.json``. Put the following content into this file:
 
     ```
     { 
@@ -71,17 +72,47 @@ Generating CRUD applications with the Angular CLI and Schematics.
 4. In the same folder, run the following Angular CLI based command:
 
     ```
-    ng g crud-module hotel --collection angular-crud 
+    ng g angular-crud:crud-module hotel   
     ```
+
 5. Now, you get files generated for managing hotels.
 
-6. Switch to the project's root and start the application:
+6. Have a look to the generated files
+
+7. Now, we just need to integrate the generated code into the existing application. Of course, this could also be automated by an schematic, but for the time being, we'll do this by hand.
+
+  For this, open the file ``app.module.ts`` add import the generated ``HotelModule``:
+
+  ```
+  @NgModule({
+    imports: [  
+      [...]
+      HotelModule,
+    ],
+    [...]
+  })
+  export class AppModule {
+  }
+  ```
+
+  Also, open the file ``sidebar.component.ts`` and add a link to the generated route:
+
+  ```html
+  <li>
+    <a routerLink="hotel">
+      <i class="ti-arrow-top-right"></i>
+      <p>Hotels</p>
+    </a>
+  </li>
+  ```
+
+8. Switch to the project's root and start the application:
 
     ```
     npm start
     ```
 
-7. Open ``localhost:4200`` and switch to the menu item ``Hotel``. You should now see your generated form.
+9.  Open ``localhost:4200`` and switch to the menu item ``Hotel``. You should now see your generated form.
 
     Please note, that you cannot save  records with Ids 1 to 5 b/c they are restricted for demos.
 
@@ -92,9 +123,7 @@ You can fork this repo and extend the generated code using Schematics. Infos abo
 - [Generating Custom Code With The Angular CLI And Schematics](https://softwarearchitekt.at/post/2017/10/29/generating-custom-code-with-the-angular-cli-and-schematics.aspx)
 - [Automatically Updating Angular Modules With Schematics And The CLI](https://softwarearchitekt.at/post/2017/12/01/generating-angular-code-with-schematics-part-ii-modifying-ngmodules.aspx)
 
-## Open Points and Call for Contributions
-
-This is a early implementation that shows the potential of this approach and provides a wireframe for your own extensions. The following features are planned for the next time:
+## Call for Contributions
 
 - Deleting records
 - Validation
@@ -104,4 +133,8 @@ This is a early implementation that shows the potential of this approach and pro
 - Supporting more field types (date, checkbox etc.)
 
 If you want to contribute one of those features or other features feel free to reach out. Let's join forces to provide a great solution!
+
+## More Information
+
+- [Angular Workshops and Trainings](https://www.softwarearchitekt.at)
 
