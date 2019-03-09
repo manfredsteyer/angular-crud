@@ -9,7 +9,7 @@
 </div><!-- End page title box -->
 <div class="row">
   <div class="col-xl-12">
-    <form #f="ngForm">
+    <form #f="ngForm" class="card-box">
       <% for (let field of getFilterFields(model)) { %>
       <div class="form-group">
         <label><%=field.label%>:</label>
