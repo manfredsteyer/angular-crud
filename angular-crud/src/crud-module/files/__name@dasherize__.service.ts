@@ -13,7 +13,7 @@ export class <%= classify(name) %>Service {
     <%=camelize(name)%>List: <%=classify(name)%>[] = [];
   
     findById(id: string): Observable<<%= classify(name) %>> {
-        let url = '<%= model.api.url %>'; <% let id = getId(model); %>
+        let url = `<%= model.api.url %>/${id}`; <% let id = getId(model); %>
         let params = { "<%=id.name%>": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
@@ -32,7 +32,7 @@ export class <%= classify(name) %>Service {
     }
 
     find(filter: <%= classify(name) %>Filter): Observable<<%= classify(name) %>[]> {
-        let url = '<%= model.api.url %>';
+        let url = `<%= model.api.url %>`;
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
 
@@ -43,11 +43,33 @@ export class <%= classify(name) %>Service {
         return this.http.get<<%= classify(name) %>[]>(url, {params, headers});
     }
 
-    save(entity: <%= classify(name) %>): Observable<<%= classify(name) %>> {
-        let url = '<%= model.api.url %>';
-        let headers = new HttpHeaders()
-            .set('Accept', 'application/json');
-        return this.http.post<<%= classify(name) %>>(url, entity, {headers});
+    save(entity: <%= classify(name) %>): Observable<<%= classify(name) %>> {        
+        var params = new HttpParams(); <% let id = getId(model); %>
+        var url = "";
+        const headers = new HttpHeaders().set('content-type', 'application/json');  
+        if(entity.<%=id.name%>) {
+            url = `<%= model.api.url %>/${entity.<%=id.name%>.toString()}`;
+            params = new HttpParams().set('ID', entity.<%=id.name%>.toString());  
+            return this.http.put<<%= classify(name) %>>(url, entity, {headers, params});
+        }
+        else {
+            url = `<%= model.api.url %>`;
+            return this.http.post<<%= classify(name) %>>(url, entity, {headers, params});
+        }        
     }
+
+
+    delete(entity: <%= classify(name) %>): Observable<<%= classify(name) %>> {
+        var params = new HttpParams(); <% let id = getId(model); %>
+        var url = "";
+        const headers = new HttpHeaders().set('content-type', 'application/json');  
+        if(entity.<%=id.name%>) {
+            url = `<%= model.api.url %>/${entity.<%=id.name%>.toString()}`;
+            params = new HttpParams().set('ID', entity.<%=id.name%>.toString());  
+            return this.http.delete<<%= classify(name) %>>(url, {headers, params});
+        }
+
+        return null;
+    }       
 }
 

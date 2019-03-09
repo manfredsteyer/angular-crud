@@ -28,7 +28,7 @@
     </div>
     
     <div class="card" *ngIf="<%=camelize(name)%>List.length > 0">
-    
+      <p *ngIf="errors">{{ errors }}</p>
       <table class="table table-contensed" >
         <thead>
         <tr><% for (let field of model.fields) { %>            
