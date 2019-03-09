@@ -10,10 +10,10 @@ export class <%= classify(name) %>Service {
     constructor(private http: HttpClient) {
     }
 
-    <%=camelize(name)%>List: <%=classify(name)%>[] = [];
+    <%=camelize(name)%>List: <%=classify(name)%>[] = [];<% let id = getId(model); %>
   
     findById(id: string): Observable<<%= classify(name) %>> {
-        let url = `<%= model.api.url %>/${id}`; <% let id = getId(model); %>
+        let url = `<%= model.api.url %>/${id}`; 
         let params = { "<%=id.name%>": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
@@ -44,7 +44,7 @@ export class <%= classify(name) %>Service {
     }
 
     save(entity: <%= classify(name) %>): Observable<<%= classify(name) %>> {        
-        var params = new HttpParams(); <% let id = getId(model); %>
+        var params = new HttpParams();
         var url = "";
         const headers = new HttpHeaders().set('content-type', 'application/json');  
         if(entity.<%=id.name%>) {
@@ -60,7 +60,7 @@ export class <%= classify(name) %>Service {
 
 
     delete(entity: <%= classify(name) %>): Observable<<%= classify(name) %>> {
-        var params = new HttpParams(); <% let id = getId(model); %>
+        var params = new HttpParams();
         var url = "";
         const headers = new HttpHeaders().set('content-type', 'application/json');  
         if(entity.<%=id.name%>) {

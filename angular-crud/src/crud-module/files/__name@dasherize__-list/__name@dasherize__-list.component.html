@@ -28,19 +28,18 @@
           class="mdi mdi-asterisk" title="New"></i></button></a>
     <div class="card-box" *ngIf="<%=camelize(name)%>List.length > 0">
       <p *ngIf="errors">{{ errors }}</p>
-      <div class="table-responsive">
+      <div class="table-responsive"><% let id = getId(model); %>
         <table class="table table-centered table-hover mb-0" id="datatable">
           <thead>
             <tr><% for (let field of model.fields) { %>
               <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
-            </tr>
-            <th class="border-top-0" scope="col" style="width:120px"></th>
+              <th class="border-top-0" scope="col" style="width:120px"></th>
             </tr>
           </thead>
           <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
             <% for (let field of model.fields) { %>
             <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
-            <td style="white-space: nowrap"><% let id = getId(model); %><a
+            <td style="white-space: nowrap"><a
                 [routerLink]="['../<%=camelize(name)%>', item.<%=id.name%> ]"><button type="button"
                   class="btn btn-icon btn-secondary"><i class="mdi mdi-grease-pencil"
                     title="Edit"></i></button></a>&nbsp;
