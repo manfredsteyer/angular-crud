@@ -29,7 +29,7 @@ jobs:
         cd angular-crud
         npm pack
         cd ../demo
-        npm ci
+        npm install
         npm install ../angular-crud/*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
