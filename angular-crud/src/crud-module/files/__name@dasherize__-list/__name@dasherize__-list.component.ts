@@ -12,6 +12,7 @@ export class <%= classify(name) %>ListComponent {
 
     filter = new <%= classify(name) %>Filter();
     selected<%=classify(name)%>: <%= classify(name) %>;
+    errors = '';
 
     get <%=camelize(name)%>List(): <%= classify(name) %>[] {
         return this.<%=camelize(name)%>Service.<%=camelize(name)%>List;
@@ -21,6 +22,7 @@ export class <%= classify(name) %>ListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {
@@ -30,5 +32,22 @@ export class <%= classify(name) %>ListComponent {
     select(selected: <%= classify(name) %>): void {
         this.selected<%= classify(name) %> = selected;
     }
+
+    delete(<%=camelize(name)%>: <%= classify(name) %>): void {
+        if (confirm("Are you sure?")) {
+            this.<%=camelize(name)%>Service.delete(<%=camelize(name)%>).subscribe(
+                <%=camelize(name)%> => {
+                    this.errors = 'Delete was successful!';
+                    setTimeout(() => {
+                        this.search();
+                    },1000);                   
+                },
+                err => {
+                    this.errors = 'Error deleting.';
+                }
+            );
+        }        
+        
+    }    
 
 }

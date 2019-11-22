@@ -1,25 +1,30 @@
-<div class="card">
-    <div class="header">
-        <h1 class="title"><%=model.title%> Detail</h1>
-    </div>
-    <div class="content">
-    
-        <p *ngIf="errors">{{ errors }}</p>
-    
-        <form *ngIf="<%=camelize(name)%>">
-<% for (let field of model.fields) { %>                
-            <div class="form-group">
-                <label><%=field.label%>:</label>
-                <%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'Date'){ %><input type='date' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } else if (!field.readonly && field.type === 'number'){ %><input type='number' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% }else { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
-            </div>
-<% } %>        
-            <div class="form-group">
-                <button
-                (click)="save()"
-                class="btn btn-default">Save</button>
-            </div>
-
-        </form>
-    
-    </div>
-</div>
+<!-- Page title box -->
+<div class="page-title-alt-bg"></div>
+<div class="page-title-box">
+    <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Project</a></li>
+        <li class="breadcrumb-item active"><%=model.title%></li>
+    </ol>
+    <h4 class="page-title"><%=model.title%> Detail</h4>
+</div><!-- End page title box -->
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card-box">
+            <p *ngIf="errors">{{ errors }}</p>
+            <form *ngIf="<%=camelize(name)%>" class="form-horizontal">
+                <% for (let field of model.fields) { %>   
+                    <div class="form-group row"><label class="col-sm-2 col-form-label"><%=field.label%></label>
+                        <div class="col-sm-10"><%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'Date'){ %><input type='date' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } else if (!field.readonly && field.type === 'number'){ %><input type='number' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% }else { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="row">
+                    <div class="col-sm-6 text-left"><button type="button" class="btn btn-success w-md"
+                            (click)="save()">Save</button></div>
+                    <div class="col-sm-6 text-right"><button type="button" class="btn btn-secondary w-md"
+                            (click)="cancel()">Cancel</button></div>
+                </div>
+            </form>
+        </div><!-- end card-->
+    </div><!-- end col -->
+</div><!-- end row -->

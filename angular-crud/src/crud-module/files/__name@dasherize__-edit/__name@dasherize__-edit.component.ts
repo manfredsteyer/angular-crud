@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { <%= classify(name) %>Service } from '../<%=dasherize(name)%>.service';
 import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
 import { map, switchMap } from 'rxjs/operators';
@@ -17,6 +18,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private <%=camelize(name)%>Service: <%=classify(name)%>Service) { 
     }
 
@@ -47,10 +49,17 @@ export class <%=classify(name)%>EditComponent implements OnInit {
             <%=camelize(name)%> => { 
                 this.<%=camelize(name)%> = <%=camelize(name)%>; 
                 this.errors = 'Save was successful!'; 
+                setTimeout(() => {
+                    this.router.navigate(['/<%=dasherize(name)%>']);
+                }, 1000);                   
             },
             err => { 
                 this.errors = 'Error saving'; 
             }
         );
     }
+
+    cancel() {
+        this.router.navigate(['/<%=dasherize(name)%>']);
+    }    
 }

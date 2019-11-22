@@ -1,48 +1,53 @@
-<div class="card">
-    
-      <div class="header">
-        <h2 class="title"><%=model.title%></h2>
+<!-- Page title box -->
+<div class="page-title-alt-bg"></div>
+<div class="page-title-box">
+  <ol class="breadcrumb float-right">
+    <li class="breadcrumb-item"><a href="javascript:void(0);">Project</a></li>
+    <li class="breadcrumb-item active"><%=model.title%></li>
+  </ol>
+  <h4 class="page-title"><%=model.title%> List</h4>
+</div><!-- End page title box -->
+<div class="row">
+  <div class="col-xl-12">
+    <form #f="ngForm" class="card-box">
+      <% for (let field of getFilterFields(model)) { %>
+      <div class="form-group">
+        <label><%=field.label%>:</label>
+        <input [(ngModel)]="filter.<%=field.name%>" name="<%=field.name%>" class="form-control">
       </div>
-      <div class="content">
-    
-        <form #f="ngForm">
-<% for (let field of getFilterFields(model)) { %>
-          <div class="form-group">
-            <label><%=field.label%>:</label>
-            <input [(ngModel)]="filter.<%=field.name%>" name="<%=field.name%>" class="form-control">
-          </div>
-<% } %>
-          <div class="form-group">
-            <button (click)="search()" [disabled]="!f?.valid" class="btn btn-default">
-              Search
-            </button>
-            <a [routerLink]="['../<%=camelize(name)%>','new']" class="btn btn-default">
-                New
-            </a>
-  
-          </div>
-          
-        </form>
-    
+      <% } %>
+      <div class="form-group">
+        <button (click)="search()" [disabled]="!f?.valid" class="btn btn-default">
+          Search
+        </button>
       </div>
-    </div>
-    
-    <div class="card" *ngIf="<%=camelize(name)%>List.length > 0">
-    
-      <table class="table table-contensed" >
-        <thead>
-        <tr><% for (let field of model.fields) { %>            
-            <th><%=field.label%></th><% } %>
-        </tr>
-        </thead>
-        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>"><% for (let field of model.fields) { %>
+    </form>
+  </div>
+  <div class="col-xl-12">
+    <a [routerLink]="['../<%=camelize(name)%>', 'new' ]"><button type="button" class="btn btn-icon btn-success"><i
+          class="mdi mdi-asterisk" title="New"></i></button></a>
+    <div class="card-box" *ngIf="<%=camelize(name)%>List.length > 0">
+      <p *ngIf="errors">{{ errors }}</p>
+      <div class="table-responsive"><% let id = getId(model); %>
+        <table class="table table-centered table-hover mb-0" id="datatable">
+          <thead>
+            <tr><% for (let field of model.fields) { %>
+              <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
+              <th class="border-top-0" scope="col" style="width:120px"></th>
+            </tr>
+          </thead>
+          <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
+            <% for (let field of model.fields) { %>
             <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
-            <td>
-                <% let id = getId(model); %>
-                <a [routerLink]="['../<%=camelize(name)%>', item.<%=id.name%> ]">Details</a> |           
-                <a (click)="select(item)">Select</a>
-            </td>
-        </tr>
-      </table>
-    
-    </div>
+            <td style="white-space: nowrap"><a
+                [routerLink]="['../<%=camelize(name)%>', item.<%=id.name%> ]"><button type="button"
+                  class="btn btn-icon btn-secondary"><i class="mdi mdi-grease-pencil"
+                    title="Edit"></i></button></a>&nbsp;
+              <a (click)="delete(item)"><button type="button" class="btn btn-icon btn-danger"><i class="mdi mdi-delete"
+                    title="Delete"></i></button></a></td>
+          </tr>
+        </table>
+      </div><!-- end table-responsive -->
+    </div><!-- end card-->
+  </div><!-- end col -->
+</div><!-- end row -->
