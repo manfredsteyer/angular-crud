@@ -30,6 +30,7 @@ jobs:
     - name: generate CRUD and run tests
       run: |
         cd demo
+        npm ci
         npm install ../angular-crud/*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
