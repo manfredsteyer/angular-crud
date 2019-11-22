@@ -27,10 +27,10 @@ jobs:
     - name: package and test in demo app
       run: |
         cd angular-crud
-        npm pack
+        npm link
         cd ../demo
         npm install
-        npm install ../angular-crud/*.tgz
+        npm link angular-crud
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
