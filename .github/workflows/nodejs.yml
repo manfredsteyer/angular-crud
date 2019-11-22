@@ -36,5 +36,5 @@ jobs:
         ng g angular-crud:crud-module hotel
         npm test
       working-directory: ./demo
-      env:
-        CI: true
+    env:
+      CI: true
