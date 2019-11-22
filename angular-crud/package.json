@@ -4,7 +4,8 @@
   "description": "Generating CRUD applications with Angular, the CLI and Schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine **/*_spec.js"
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "coverage": "istanbul cover -x 'src/**/*_spec.js' jasmine src/**/*_spec.js"
   },
   "keywords": [
     "schematics",
@@ -22,6 +23,7 @@
     "@types/jasmine": "^2.6.0",
     "@types/json5": "0.0.29",
     "@types/node": "^8.0.31",
+    "istanbul": "0.4.5",
     "jasmine": "^2.8.0",
     "typescript": "^2.5.2"
   },

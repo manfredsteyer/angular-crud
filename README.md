@@ -21,15 +21,15 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
    ```
    cd angular-crud
-   cd demo-cli6
+   cd demo
    npm install
    ```
 
    Note, that this also installs ``angular-crud``.
 
-3. Switch to the folder ``src\app`` and create a sub-folder ``hotel`` with a file ``model.json``. Put the following content into this file:
+3. Switch to the folder `src/app` and create a sub-folder `hotel` with a file `model.json`. Put the following content into this file:
 
-    ```
+    ```json
     { 
         "title": "Hotel",
         "entity": "hotel",
@@ -69,7 +69,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 	The generator is using a json5 parser. This means that you can use comments, omit quotation marks and use trailing commas.  
 
-4. In the same folder, run the following Angular CLI based command:
+4. In your project's root directory, run the following Angular CLI based command:
 
     ```
     ng g angular-crud:crud-module hotel   
@@ -112,7 +112,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
     npm start
     ```
 
-9.  Open ``localhost:4200`` and switch to the menu item ``Hotel``. You should now see your generated form.
+9.  Open <http://localhost:4200> and switch to the menu item ``Hotel``. You should now see your generated form.
 
     Please note, that you cannot save  records with Ids 1 to 5 b/c they are restricted for demos.
 
@@ -125,7 +125,6 @@ You can fork this repo and extend the generated code using Schematics. Infos abo
 
 ## Call for Contributions
 
-- Deleting records
 - Validation
 - Navigating between Records
 - Lookups with dropdown fields etc.
