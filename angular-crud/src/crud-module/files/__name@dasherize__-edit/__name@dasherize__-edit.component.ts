@@ -48,7 +48,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
     this.<%=camelize(name)%>Service.save(this.<%=camelize(name)%>).subscribe(
       <%=camelize(name)%> => {
         this.<%=camelize(name)%> = <%=camelize(name)%>;
-        this.feedback = 'Save was successful!';
+        this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(() => {
           this.router.navigate(['/<%=dasherize(name)%>']);
         }, 1000);
