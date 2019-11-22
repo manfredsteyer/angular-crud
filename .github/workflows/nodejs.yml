@@ -32,6 +32,7 @@ jobs:
         cd demo
         npm i
         npm i --no-save ../angular-crud/*.tgz
+        npm i -g @angular/cli
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
