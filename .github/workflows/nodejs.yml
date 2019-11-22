@@ -19,18 +19,21 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        cd angular-crud
         npm ci
         npm run build --if-present
         npm test
         npm run coverage
-        npm link
-        cd ../demo
+      working-directory: ./angular-crud
+    - name: package angular-crud
+      run: npm pack
+    - name: generate CRUD and run tests
+      run: |
         npm ci
-        npm link angular-crud
+        npm install ../*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
         npm test
+      working-directory: ./demo
       env:
         CI: true
