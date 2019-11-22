@@ -14,7 +14,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
 
   id: string;
   <%=camelize(name)%>: <%=classify(name)%>;
-  feedback: string;
+  feedback: {};
 
   constructor(
     private route: ActivatedRoute,
@@ -36,10 +36,10 @@ export class <%=classify(name)%>EditComponent implements OnInit {
       .subscribe(
         <%=camelize(name)%> => {
           this.<%=camelize(name)%> = <%=camelize(name)%>;
-          this.feedback = '';
+          this.feedback = {};
         },
         err => {
-          this.feedback = 'Error loading';
+          this.feedback = {type: 'warning', message: 'Error loading'};
         }
       );
   }
@@ -54,7 +54,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
         }, 1000);
       },
       err => {
-        this.feedback = 'Error saving';
+        this.feedback = {type: 'warning', message: 'Error saving'};
       }
     );
   }

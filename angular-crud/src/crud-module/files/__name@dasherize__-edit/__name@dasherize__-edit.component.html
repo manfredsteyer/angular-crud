@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="card-box">
-            <p *ngIf="errors">{{ errors }}</p>
+            <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
             <form *ngIf="<%=camelize(name)%>" class="form-horizontal">
-                <% for (let field of model.fields) { %>   
+                <% for (let field of model.fields) { %>
                     <div class="form-group row"><label class="col-sm-2 col-form-label"><%=field.label%></label>
                         <div class="col-sm-10"><%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'Date'){ %><input type='date' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } else if (!field.readonly && field.type === 'number'){ %><input type='number' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% }else { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
                         </div>
