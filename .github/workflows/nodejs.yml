@@ -30,9 +30,7 @@ jobs:
     - name: generate CRUD and run tests
       run: |
         cd demo
-        cat package.json
-        ls -la ../angular-crud
-        npm install ../*.tgz
+        npm install ../angular-crud/*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
