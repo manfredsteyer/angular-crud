@@ -24,5 +24,12 @@ jobs:
         npm run build --if-present
         npm test
         npm run coverage
+        npm pack
+        cd ../demo
+        npm install ../angular-crud/*.tgz
+        mkdir -p src/app/hotel
+        cp model.json src/app/hotel/.
+        ng g angular-crud:crud-module hotel
+        npm test
       env:
         CI: true
