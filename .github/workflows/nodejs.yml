@@ -24,9 +24,6 @@ jobs:
         npm run build --if-present
         npm test
         npm run coverage
-    - name: package and test in demo app
-      run: |
-        cd angular-crud
         npm link
         cd ../demo
         npm install
