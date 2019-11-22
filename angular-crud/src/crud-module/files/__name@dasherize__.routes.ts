@@ -11,4 +11,4 @@ export const <%=name.toUpperCase()%>_ROUTES: Routes = [
     path: '<%=dasherize(name)%>/:id',
     component: <%= classify(name) %>EditComponent
   }
-]
+];

@@ -1,8 +1,17 @@
-import { chain, mergeWith, SchematicsException } from '@angular-devkit/schematics';
+import {
+  apply,
+  branchAndMerge,
+  chain, FileEntry, forEach, MergeStrategy,
+  mergeWith,
+  move,
+  Rule,
+  SchematicContext,
+  SchematicsException,
+  template,
+  Tree,
+  url
+} from '@angular-devkit/schematics';
 import { strings as stringUtils } from '@angular-devkit/core';
-
-import { apply, move, Rule, template, url, branchAndMerge, Tree, SchematicContext } from '@angular-devkit/schematics';
-import { addImportToParentModule } from '../utils/ng-module-utils';
 
 import * as JSON5 from 'json5';
 import * as crudModelUtils from '../utils/crud-model-utils'
@@ -12,7 +21,8 @@ import { CrudModel } from './model';
 
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { parseName } from '@schematics/angular/utility/parse-name';
-import { findModuleFromOptions } from '../schematics-angular-utils/find-module';
+import { addModuleImportToModule, findModuleFromOptions } from 'schematics-utilities';
+import { capitalize } from '@angular-devkit/core/src/utils/strings';
 
 function setupOptions(options: MenuOptions, host: Tree): void {
   const workspace = getWorkspace(host);
@@ -34,38 +44,50 @@ function setupOptions(options: MenuOptions, host: Tree): void {
 
 export default function (options: MenuOptions): Rule {
 
-    return (host: Tree, context: SchematicContext) => {
+  return (host: Tree, context: SchematicContext) => {
 
-      setupOptions(options, host);
-      options.module = findModuleFromOptions(host, options, true) || '';
+    setupOptions(options, host);
+    options.module = findModuleFromOptions(host, options) || '';
 
-      const modelFile = `/${options.path}/${options.model}`;
-      const modelBuffer = host.read(modelFile);
+    const modelFile = `${options.path}/${options.name}/${options.model}`;
+    const modelBuffer = host.read(modelFile);
 
-      if (modelBuffer === null) {
-        throw new SchematicsException(`Model file ${options.model} does not exist.`);
-      }
-
-      const modelJson = modelBuffer.toString('utf-8');
-      const model = JSON5.parse(modelJson) as CrudModel;
-
-      const templateSource = apply(url('./files'), [
-        template({
-          ...stringUtils,
-          ...options,
-          ...crudModelUtils as any,
-          model
-        }),
-        move(options.path || '')
-      ]);
-
-      const rule = chain([
-        branchAndMerge(chain([
-          mergeWith(templateSource),
-          addImportToParentModule(options)
-        ])),
-      ]);
-
-      return rule(host, context);
+    if (modelBuffer === null) {
+      throw new SchematicsException(`Model file ${options.model} does not exist.`);
     }
+
+    const modelJson = modelBuffer.toString('utf-8');
+    const model = JSON5.parse(modelJson) as CrudModel;
+
+    // add imports to app.module.ts
+    addModuleImportToModule(host,
+      `${options.path}/app.module.ts`,
+      `${capitalize(model.entity)}Module`,
+      `.${options.path}/${model.entity}.module`);
+
+    const templateSource = apply(url('./files'), [
+      template({
+        ...stringUtils,
+        ...options,
+        ...crudModelUtils as any,
+        model
+      }),
+      move(`${options.path}/${options.name}` || ''),
+      // fix for https://github.com/angular/angular-cli/issues/11337
+      forEach((fileEntry: FileEntry) => {
+        if (host.exists(fileEntry.path)) {
+          host.overwrite(fileEntry.path, fileEntry.content);
+        }
+        return fileEntry;
+      }),
+    ]);
+
+    const rule = chain([
+      branchAndMerge(chain([
+        mergeWith(templateSource, MergeStrategy.Overwrite)
+      ])),
+    ]);
+
+    return rule(host, context);
+  }
 }

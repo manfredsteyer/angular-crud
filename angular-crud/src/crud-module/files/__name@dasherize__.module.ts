@@ -17,10 +17,7 @@ import { <%= name.toUpperCase() %>_ROUTES } from './<%=dasherize(name)%>.routes'
     <%= classify(name) %>ListComponent,
     <%= classify(name) %>EditComponent
   ],
-  providers: [
-    <%= classify(name) %>Service
-  ],
-  exports: [
-  ]
+  providers: [<%= classify(name) %>Service],
+  exports: []
 })
 export class <%= classify(name) %>Module { }
