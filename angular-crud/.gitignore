@@ -3,6 +3,7 @@ src/**/*.js
 src/**/*.js.map
 src/**/*.d.ts
 *.tgz
+coverage/
 
 # IDEs
 .idea/

@@ -1,14 +1,13 @@
-
 export interface MenuOptions {
-    name: string;
-    appRoot: string;
-    path: string;
-    sourceDir: string;
+  name: string;
+  appRoot: string;
+  path: string;
+  sourceDir: string;
 
-    project: string;
+  project: string;
 
-    module: string;
-    export: boolean;
+  module: string;
+  export: boolean;
 
-    model: string;
+  model: string;
 }
