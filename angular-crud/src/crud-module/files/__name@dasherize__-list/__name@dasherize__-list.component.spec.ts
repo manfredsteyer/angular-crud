@@ -11,7 +11,7 @@ describe('<%=classify(name)%>ListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [<%=classify(name)%>ListComponent],
       imports: [HttpClientTestingModule],
-      providers: [<%=classify(name)%>]
+      providers: [<%=classify(name)%>Service]
     })
       .compileComponents();
   }));

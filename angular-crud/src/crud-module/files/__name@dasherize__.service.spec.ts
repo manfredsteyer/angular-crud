@@ -12,8 +12,8 @@ describe('<%=classify(name)%>Service', () => {
       providers: [<%=classify(name)%>Service]
     });
 
-    service = TestBed.inject(<%=classify(name)%>Service);
-    httpMock = TestBed.inject(HttpTestingController);
+    service = TestBed.get(<%=classify(name)%>Service);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('should be created', () => {
