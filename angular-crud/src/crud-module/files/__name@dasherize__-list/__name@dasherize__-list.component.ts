@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { <%= classify(name) %>Filter } from '../<%=dasherize(name)%>-filter';
 import { <%= classify(name) %>Service } from '../<%=dasherize(name)%>.service';
 import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
@@ -8,7 +7,7 @@ import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
   selector: 'app-<%=dasherize(name)%>',
   templateUrl: '<%=dasherize(name)%>-list.component.html'
 })
-export class <%= classify(name) %>ListComponent {
+export class <%= classify(name) %>ListComponent implements OnInit {
 
   filter = new <%= classify(name) %>Filter();
   selected<%=classify(name)%>: <%= classify(name) %>;
