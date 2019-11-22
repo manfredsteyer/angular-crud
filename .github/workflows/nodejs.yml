@@ -29,12 +29,14 @@ jobs:
       working-directory: ./angular-crud
     - name: generate CRUD and run tests
       run: |
+        cd demo
+        cat package.json
+        ls -la
         npm ci
         npm install ../*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
         npm test
-      working-directory: ./demo
     env:
       CI: true
