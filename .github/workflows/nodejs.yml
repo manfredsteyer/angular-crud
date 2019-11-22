@@ -31,8 +31,7 @@ jobs:
       run: |
         cd demo
         cat package.json
-        ls -la
-        npm ci
+        ls -la ../angular-crud
         npm install ../*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
