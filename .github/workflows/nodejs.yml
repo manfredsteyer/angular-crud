@@ -30,12 +30,12 @@ jobs:
     - name: generate CRUD and run tests
       run: |
         npm i -g @angular/cli
-        cd demo
         npm i
         npm i --no-save ../angular-crud/*.tgz
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
-        npm test -- --configuration=ci
+        ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+      working-directory: ./demo
       env:
         CI: true
