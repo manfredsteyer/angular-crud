@@ -26,6 +26,7 @@ jobs:
       working-directory: ./angular-crud
     - name: package angular-crud
       run: npm pack
+      working-directory: ./angular-crud
     - name: generate CRUD and run tests
       run: |
         npm ci
