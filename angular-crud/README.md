@@ -2,13 +2,13 @@
 
 Generating CRUD applications with the Angular CLI and Schematics.
 
-![Scaffold files for CRUD](https://i.imgur.com/1XWTXRF.png)
+<div>
+  <p><img src="https://i.imgur.com/0MxujmK.png" alt="Scaffold files for CRUD" width="800"></p>
+  <p><img src="https://i.imgur.com/u67zkJh.png" alt="Scaffold List" width="800"></p>
+  <p><img src="https://i.imgur.com/vfKnNwK.png" alt="Scaffold Detail View" width="800"></p>
+</div>
 
-![Scaffoled List](https://i.imgur.com/5bARUTm.png)
-
-![Scaffoled Detail View](https://i.imgur.com/8XRkCjq.png)
-
-## Tutorial: Getting Started 
+## Tutorial: Getting Started
 
 1. Clone this repository.
 
@@ -25,7 +25,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
    npm install
    ```
 
-   Note, that this also installs ``angular-crud``.
+   Note, that this also installs `angular-crud`.
 
 3. Switch to the folder `src/app` and create a sub-folder `hotel` with a file `model.json`. Put the following content into this file:
 
@@ -72,23 +72,23 @@ Generating CRUD applications with the Angular CLI and Schematics.
 4. In your project's root directory, run the following Angular CLI based command:
 
     ```
-    ng g angular-crud:crud-module hotel   
+    ng g angular-crud:crud-module hotel
     ```
 
 5. Now, you get files generated for managing hotels.
 
 6. Have a look to the generated files
 
-7. Open the file `sidebar.component.ts` and add a link to the generated route:
+7. Open the file `sidebar.component.html` and add a link to the generated route:
 
-  ```html
-  <li>
-    <a routerLink="hotels">
-      <i class="ti-arrow-top-right"></i>
-      <p>Hotels</p>
-    </a>
-  </li>
-  ```
+    ```html
+    <li>
+      <a routerLink="hotels">
+        <i class="ti-arrow-top-right"></i>
+        <p>Hotels</p>
+      </a>
+    </li>
+    ```
 
 8. Switch to the project's root and start the application:
 
@@ -96,7 +96,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
     npm start
     ```
 
-9.  Open <http://localhost:4200> and switch to the menu item `Hotel`. You should now see your generated form.
+9.  Open <http://localhost:4200> and switch to the menu item `Hotels`. You should now see your generated form.
 
     Please note, that you cannot save  records with Ids 1 to 5 b/c they are restricted for demos.
 
