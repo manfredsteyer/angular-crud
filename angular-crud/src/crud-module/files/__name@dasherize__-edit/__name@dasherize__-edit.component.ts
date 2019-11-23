@@ -14,7 +14,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
 
   id: string;
   <%=camelize(name)%>: <%=classify(name)%>;
-  feedback = {type, message};
+  feedback = {};
 
   constructor(
     private route: ActivatedRoute,
