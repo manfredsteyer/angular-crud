@@ -14,7 +14,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
 
   id: string;
   <%=camelize(name)%>: <%=classify(name)%>;
-  feedback: {};
+  feedback = {type, message};
 
   constructor(
     private route: ActivatedRoute,
@@ -59,6 +59,6 @@ export class <%=classify(name)%>EditComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/<%=dasherize(name)%>']);
+    this.router.navigate(['/<%=pluralize(name)%>']);
   }
 }
