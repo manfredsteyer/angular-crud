@@ -104,13 +104,13 @@ describe('Angular CRUD Schematics', () => {
   it('should add routes', (done) => {
     schematicRunner.runSchematicAsync('crud-module', defaultOptions, appTree).toPromise().then(tree => {
       const routingModule = tree.readContent('/projects/crudtest/src/app/hotel/hotel.routes.ts');
-      expect(routingModule).toContain(`path: 'hotel'`);
-      expect(routingModule).toContain(`path: 'hotel/:id'`);
+      expect(routingModule).toContain(`path: 'hotels'`);
+      expect(routingModule).toContain(`path: 'hotels/:id'`);
       done();
     }, done.fail);
   });
 
-  it('should import the hotel module in the app module file', (done) => {
+  it('should import the module in the app module file', (done) => {
     schematicRunner.runSchematicAsync('crud-module', defaultOptions, appTree).toPromise().then(tree => {
       const appModule = tree.readContent('/projects/crudtest/src/app/app.module.ts');
       expect(appModule).toMatch(/HotelModule/);
