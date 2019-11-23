@@ -17,10 +17,7 @@ import { FLIGHT_ROUTES } from './flight.routes';
     FlightListComponent,
     FlightEditComponent
   ],
-  providers: [
-    FlightService
-  ],
-  exports: [
-  ]
+  providers: [FlightService],
+  exports: []
 })
 export class FlightModule { }

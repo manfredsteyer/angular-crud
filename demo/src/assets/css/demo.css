@@ -8,7 +8,7 @@
   .typo-line .category {
     transform: translateY(-50%);
     top: 50%;
-    left: 0px;
+    left: 0;
     position: absolute;
   }
 }

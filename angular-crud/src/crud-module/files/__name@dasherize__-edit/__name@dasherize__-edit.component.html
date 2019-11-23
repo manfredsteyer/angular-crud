@@ -1,26 +1,30 @@
-<div class="header">
-  <ol class="breadcrumb float-right">
-    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item active"><%=model.title%></li>
-  </ol>
-  <h1 class="title"><%=model.title%> Detail</h1>
-</div>
-<div class="content">
-  <div class="card-box">
-    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+  <li class="breadcrumb-item active"><%=model.title%></li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h1 class="title"><%=model.title%> Detail</h1>
+  </div>
+  <div class="content">
+      <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
       <form *ngIf="<%=camelize(name)%>" class="form-horizontal">
         <% for (let field of model.fields) { %>
-          <div class="form-group row"><label class="col-sm-2 col-form-label"><%=field.label%></label>
-            <div class="col-sm-10"><%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'Date'){ %><input type='date' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } else if (!field.readonly && field.type === 'number'){ %><input type='number' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% }else { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
+          <div class="form-group row">
+            <label for="<%=field.name%>" class="col-sm-2 col-form-label"><%=field.label%></label>
+            <div class="col-sm-10">
+              <%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'Date'){ %><input type='date' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" class="form-control"><% } else if (!field.readonly && field.type === 'number'){ %><input type='number' [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" class="form-control"><% }else { %><input [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" class="form-control"><% } %>
             </div>
           </div>
         <% } %>
         <div class="row">
-          <div class="col-sm-6 text-left"><button type="button" class="btn btn-success w-md"
-              (click)="save()">Save</button></div>
-          <div class="col-sm-6 text-right"><button type="button" class="btn btn-secondary w-md"
-              (click)="cancel()">Cancel</button></div>
+          <div class="col-sm-2 text-left">
+            <button type="button" class="btn btn-primary w-md" (click)="save()">Save</button>
+          </div>
+          <div class="col-sm-2 text-left">
+            <button type="button" class="btn btn-secondary w-md" (click)="cancel()">Cancel</button>
+          </div>
         </div>
-      </form>
+    </form>
   </div>
 </div>

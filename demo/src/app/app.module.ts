@@ -1,4 +1,4 @@
-import { FlightModule } from './flights/flight.module';
+import { FlightModule } from './flight/flight.module';
 import {HttpClientModule} from '@angular/common/http';
 
 import {NgModule} from '@angular/core';
