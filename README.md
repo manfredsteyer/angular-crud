@@ -10,7 +10,8 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 ## Tutorial: Getting Started 
 
-1. Clone the following repo ``https://github.com/manfredsteyer/angular-crud``
+1. Clone this repository.
+
     ```
     git clone https://github.com/manfredsteyer/angular-crud
     ```
@@ -20,12 +21,11 @@ Generating CRUD applications with the Angular CLI and Schematics.
 2. Install the needed npm packages:
 
    ```
-   cd angular-crud
    cd demo
    npm install
    ```
 
-   Note, that this also installs ``angular-crud``.
+   Note, that this also installs `angular-crud`.
 
 3. Switch to the folder `src/app` and create a sub-folder `hotel` with a file `model.json`. Put the following content into this file:
 
@@ -79,7 +79,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 6. Have a look to the generated files
 
-7. Open the file ``sidebar.component.ts`` and add a link to the generated route:
+7. Open the file `sidebar.component.ts` and add a link to the generated route:
 
   ```html
   <li>
@@ -96,7 +96,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
     npm start
     ```
 
-9.  Open <http://localhost:4200> and switch to the menu item ``Hotel``. You should now see your generated form.
+9.  Open <http://localhost:4200> and switch to the menu item `Hotel`. You should now see your generated form.
 
     Please note, that you cannot save  records with Ids 1 to 5 b/c they are restricted for demos.
 
