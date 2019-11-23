@@ -79,27 +79,11 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 6. Have a look to the generated files
 
-7. Now, we just need to integrate the generated code into the existing application. Of course, this could also be automated by an schematic, but for the time being, we'll do this by hand.
-
-  For this, open the file ``app.module.ts`` add import the generated ``HotelModule``:
-
-  ```
-  @NgModule({
-    imports: [  
-      [...]
-      HotelModule,
-    ],
-    [...]
-  })
-  export class AppModule {
-  }
-  ```
-
-  Also, open the file ``sidebar.component.ts`` and add a link to the generated route:
+7. Open the file ``sidebar.component.ts`` and add a link to the generated route:
 
   ```html
   <li>
-    <a routerLink="hotel">
+    <a routerLink="hotels">
       <i class="ti-arrow-top-right"></i>
       <p>Hotels</p>
     </a>

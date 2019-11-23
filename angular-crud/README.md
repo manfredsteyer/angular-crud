@@ -21,7 +21,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
    ```
    cd angular-crud
-   cd demo-cli6
+   cd demo
    npm install
    ```
 
@@ -29,7 +29,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 3. Switch to the folder ``src\app`` and create a sub-folder ``hotel`` with a file ``model.json``. Put the following content into this file:
 
-    ```
+    ```json
     { 
         "title": "Hotel",
         "entity": "hotel",
@@ -69,7 +69,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 	The generator is using a json5 parser. This means that you can use comments, omit quotation marks and use trailing commas.  
 
-4. In the same folder, run the following Angular CLI based command:
+4. In your project's root directory, run the following Angular CLI based command:
 
     ```
     ng g angular-crud:crud-module hotel   
@@ -79,27 +79,11 @@ Generating CRUD applications with the Angular CLI and Schematics.
 
 6. Have a look to the generated files
 
-7. Now, we just need to integrate the generated code into the existing application. Of course, this could also be automated by an schematic, but for the time being, we'll do this by hand.
-
-  For this, open the file ``app.module.ts`` add import the generated ``HotelModule``:
-
-  ```
-  @NgModule({
-    imports: [  
-      [...]
-      HotelModule,
-    ],
-    [...]
-  })
-  export class AppModule {
-  }
-  ```
-
-  Also, open the file ``sidebar.component.ts`` and add a link to the generated route:
+7. Open the file ``sidebar.component.ts`` and add a link to the generated route:
 
   ```html
   <li>
-    <a routerLink="hotel">
+    <a routerLink="hotels">
       <i class="ti-arrow-top-right"></i>
       <p>Hotels</p>
     </a>
@@ -125,7 +109,6 @@ You can fork this repo and extend the generated code using Schematics. Infos abo
 
 ## Call for Contributions
 
-- Deleting records
 - Validation
 - Navigating between Records
 - Lookups with dropdown fields etc.
