@@ -49,7 +49,7 @@ export class <%=classify(name)%>EditComponent implements OnInit {
         this.<%=camelize(name)%> = <%=camelize(name)%>;
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(() => {
-          this.router.navigate(['/<%=dasherize(name)%>']);
+          this.router.navigate(['/<%=pluralize(name)%>']);
         }, 1000);
       },
       err => {

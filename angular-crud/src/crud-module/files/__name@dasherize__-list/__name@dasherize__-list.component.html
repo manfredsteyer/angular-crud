@@ -40,7 +40,7 @@
             <% for (let field of model.fields) { %>
             <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
             <td style="white-space: nowrap"><a
-                [routerLink]="['../<%=camelize(name)%>', item.<%=id.name%> ]"><button type="button"
+                [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]"><button type="button"
                   class="btn btn-icon btn-secondary"><i class="mdi mdi-grease-pencil"
                     title="Edit"></i></button></a>&nbsp;
               <a (click)="delete(item)"><button type="button" class="btn btn-icon btn-danger"><i class="mdi mdi-delete"
