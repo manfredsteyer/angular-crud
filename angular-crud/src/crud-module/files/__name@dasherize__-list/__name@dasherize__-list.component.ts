@@ -11,7 +11,7 @@ export class <%= classify(name) %>ListComponent implements OnInit {
 
   filter = new <%= classify(name) %>Filter();
   selected<%=classify(name)%>: <%= classify(name) %>;
-  feedback = {};
+  feedback: any = {};
 
   get <%=camelize(name)%>List(): <%= classify(name) %>[] {
     return this.<%=camelize(name)%>Service.<%=camelize(name)%>List;
