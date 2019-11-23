@@ -29,12 +29,11 @@ export class <%=classify(name)%>EditComponent implements OnInit {
       .pipe(
         map(p => p.id),
         switchMap(id => {
-          if (id === 'new') return of(new <%=classify(name)%>());
-          return this.<%=camelize(name)%>Service.findById(id)
+          if (id === 'new') { return of(new <%=classify(name)%>()); }
+          return this.<%=camelize(name)%>Service.findById(id);
         })
       )
-      .subscribe(
-        <%=camelize(name)%> => {
+      .subscribe(<%=camelize(name)%> => {
           this.<%=camelize(name)%> = <%=camelize(name)%>;
           this.feedback = {};
         },

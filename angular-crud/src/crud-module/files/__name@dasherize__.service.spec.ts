@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { <%=classify(name)%>Service } from './<%=classify(name)%>.service';
+import { <%=classify(name)%>Service } from './<%=dasherize(name)%>.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('<%=classify(name)%>Service', () => {
@@ -12,8 +12,8 @@ describe('<%=classify(name)%>Service', () => {
       providers: [<%=classify(name)%>Service]
     });
 
-    service = TestBed.inject(<%=classify(name)%>Service);
-    httpMock = TestBed.inject(HttpTestingController);
+    service = TestBed.get(<%=classify(name)%>Service);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('should be created', () => {
