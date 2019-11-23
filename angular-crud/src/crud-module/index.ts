@@ -63,7 +63,7 @@ export default function (options: MenuOptions): Rule {
     addModuleImportToModule(host,
       `${options.path}/app.module.ts`,
       `${capitalize(model.entity)}Module`,
-      `.${options.name}/${model.entity}.module`);
+      `./${options.name}/${model.entity}.module`);
 
     const templateSource = apply(url('./files'), [
       template({
