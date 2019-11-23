@@ -10,17 +10,13 @@ import {APP_EXTRA_OPTIONS, APP_ROUTES} from './app.routes';
 import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
-import { HotelModule } from './src/app/hotel.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     FlightModule,
-
     RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
-
-    HotelModule,
   ],
   declarations: [
     AppComponent,
