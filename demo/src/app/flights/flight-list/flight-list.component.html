@@ -1,10 +1,10 @@
 <div class="card">
-    
+
       <div class="header">
         <h2 class="title">Flight</h2>
       </div>
       <div class="content">
-    
+
         <form #f="ngForm">
 
           <div class="form-group">
@@ -24,36 +24,37 @@
             <a [routerLink]="['../flight','new']" class="btn btn-default">
                 New
             </a>
-  
+
           </div>
-          
+
         </form>
-    
+
       </div>
     </div>
-    
+
     <div class="card" *ngIf="flightList.length > 0">
-    
-      <table class="table table-contensed" >
+
+      <table class="table" >
         <thead>
-        <tr>            
-            <th>Id</th>            
-            <th>From</th>            
-            <th>To</th>            
+        <tr>
+            <th>Id</th>
+            <th>From</th>
+            <th>To</th>
             <th>Date</th>
         </tr>
         </thead>
+        <tbody>
         <tr *ngFor="let item of flightList" [class.active]="item === selectedFlight">
             <td>{{item.id}}</td>
             <td>{{item.from}}</td>
             <td>{{item.to}}</td>
             <td>{{item.date | date}}</td>
             <td>
-                
-                <a [routerLink]="['../flight', item.id ]">Details</a> |           
+
+                <a [routerLink]="['../flight', item.id ]">Details</a> |
                 <a (click)="select(item)">Select</a>
             </td>
         </tr>
+        </tbody>
       </table>
-    
     </div>

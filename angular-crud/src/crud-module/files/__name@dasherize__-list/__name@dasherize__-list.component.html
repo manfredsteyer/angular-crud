@@ -1,6 +1,6 @@
 <div class="header">
   <ol class="breadcrumb float-right">
-    <li class="breadcrumb-item"><a routerLink="/">Project</a></li>
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
     <li class="breadcrumb-item active"><%=model.title%></li>
   </ol>
   <h1 class="title"><%=model.title%> List</h1>
@@ -20,7 +20,7 @@
     </form>
   </div>
   <div class="col-xl-12">
-    <a [routerLink]="['../<%=camelize(name)%>', 'new' ]"><button type="button" class="btn btn-icon btn-success"><i
+    <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]"><button type="button" class="btn btn-icon btn-success"><i
         class="mdi mdi-asterisk" title="New"></i></button></a>
     <div class="card-box" *ngIf="<%=camelize(name)%>List.length > 0">
       <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
@@ -32,16 +32,18 @@
               <th class="border-top-0" scope="col" style="width:120px"></th>
             </tr>
           </thead>
-          <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
-          <% for (let field of model.fields) { %>
-            <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
-            <td style="white-space: nowrap"><a
-              [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]"><button type="button"
-                class="btn btn-icon btn-secondary"><i class="mdi mdi-grease-pencil"
-                title="Edit"></i></button></a>&nbsp;
-              <a (click)="delete(item)"><button type="button" class="btn btn-icon btn-danger"><i class="mdi mdi-delete"
-                title="Delete"></i></button></a></td>
-          </tr>
+          <tbody>
+            <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
+            <% for (let field of model.fields) { %>
+              <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
+              <td style="white-space: nowrap"><a
+                [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]"><button type="button"
+                  class="btn btn-icon btn-secondary"><i class="mdi mdi-grease-pencil"
+                  title="Edit"></i></button></a>&nbsp;
+                <a (click)="delete(item)"><button type="button" class="btn btn-icon btn-danger"><i class="mdi mdi-delete"
+                  title="Delete"></i></button></a></td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
