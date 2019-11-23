@@ -72,7 +72,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 4. In your project's root directory, run the following Angular CLI based command:
 
     ```
-    ng g angular-crud:crud-module hotel   
+    ng g angular-crud:crud-module hotel
     ```
 
 5. Now, you get files generated for managing hotels.

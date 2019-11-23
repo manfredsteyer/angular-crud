@@ -4,7 +4,7 @@
 </ol>
 <div class="card">
   <div class="header">
-    <h1 class="title"><%=model.title%> List</h1>
+    <h2 class="title"><%=model.title%> List</h2>
   </div>
   <div class="content">
     <form #f="ngForm">
@@ -15,33 +15,32 @@
       </div>
       <% } %>
       <div class="form-group">
-        <button (click)="search()" [disabled]="!f?.valid" class="btn btn-default">Search</button>
-        <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-icon btn-success">New</a>
+        <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
+        <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default">New</a>
       </div>
     </form>
-    <div class="card" *ngIf="<%=camelize(name)%>List.length > 0">
-      <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
-      <div class="table-responsive"><% let id = getId(model); %>
-        <table class="table table-centered table-hover mb-0" id="datatable">
-          <thead>
-            <tr><% for (let field of model.fields) { %>
-              <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
-              <th class="border-top-0" scope="col" style="width:120px"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
-            <% for (let field of model.fields) { %>
-              <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
-              <td style="white-space: nowrap">
-                <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]"
-                   class="btn btn-secondary">Edit</a>&nbsp;
-                <button (click)="delete(item)" class="btn btn-icon btn-danger">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  </div>
+</div>
+<div class="card" *ngIf="<%=camelize(name)%>List.length > 0">
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive"><% let id = getId(model); %>
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr><% for (let field of model.fields) { %>
+          <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
+          <th class="border-top-0" scope="col" style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
+        <% for (let field of model.fields) { %>
+          <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]" class="btn btn-secondary">Edit</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
