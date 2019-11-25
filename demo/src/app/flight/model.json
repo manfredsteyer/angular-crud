@@ -1,4 +1,4 @@
-{ 
+{
     "title": "Flight",
     "entity": "flight",
     "api": {
@@ -29,9 +29,9 @@
       },
       {
         "name": "date",
-        "type": "string",
+        "type": "date",
         "control": "date",
         "label": "Date"
-      } 
+      }
     ]
 }

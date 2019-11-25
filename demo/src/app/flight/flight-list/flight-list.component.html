@@ -19,10 +19,8 @@
         <input [(ngModel)]="filter.to" id="to" name="to" class="form-control">
       </div>
       
-      <div class="form-group">
-        <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
-        <a [routerLink]="['../flights', 'new' ]" class="btn btn-default">New</a>
-      </div>
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
+      <a [routerLink]="['../flights', 'new' ]" class="btn btn-default">New</a>
     </form>
   </div>
 </div>

@@ -14,10 +14,8 @@
         <input [(ngModel)]="filter.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" class="form-control">
       </div>
       <% } %>
-      <div class="form-group">
-        <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
-        <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default">New</a>
-      </div>
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
+      <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default">New</a>
     </form>
   </div>
 </div>
