@@ -35,7 +35,6 @@ jobs:
         mkdir -p src/app/hotel
         cp model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
-        cat src/app/app.module.ts
         ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
       working-directory: ./demo
       env:
