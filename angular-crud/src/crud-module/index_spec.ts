@@ -113,6 +113,7 @@ describe('Angular CRUD Schematics', () => {
   it('should import the module in the app module file', (done) => {
     schematicRunner.runSchematicAsync('crud-module', defaultOptions, appTree).toPromise().then(tree => {
       const appModule = tree.readContent('/projects/crudtest/src/app/app.module.ts');
+      expect(appModule).toMatch(/.\/hotel\/hotel.module/);
       expect(appModule).toMatch(/HotelModule/);
       done();
     }, done.fail);
