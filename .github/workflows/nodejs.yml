@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -19,10 +19,23 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        cd angular-crud
         npm ci
         npm run build --if-present
         npm test
         npm run coverage
+      working-directory: ./angular-crud
+    - name: package angular-crud
+      run: npm pack
+      working-directory: ./angular-crud
+    - name: generate CRUD and run tests
+      run: |
+        npm i -g @angular/cli
+        npm i
+        npm i --no-save ../angular-crud/*.tgz
+        mkdir -p src/app/hotel
+        cp model.json src/app/hotel/.
+        ng g angular-crud:crud-module hotel
+        ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+      working-directory: ./demo
       env:
         CI: true

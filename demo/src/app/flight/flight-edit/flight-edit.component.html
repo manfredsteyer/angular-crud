@@ -1,0 +1,37 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+  <li class="breadcrumb-item active">Flight</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Flight Detail</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="flight" #editForm="ngForm" (ngSubmit)="save()">
+    
+      <div class="form-group">
+        <label for="id">Id</label>
+        <input type="number" [(ngModel)]="flight.id" id="id" name="id" class="form-control">
+      </div>
+    
+      <div class="form-group">
+        <label for="from">From</label>
+        <input [(ngModel)]="flight.from" id="from" name="from" class="form-control">
+      </div>
+    
+      <div class="form-group">
+        <label for="to">To</label>
+        <input [(ngModel)]="flight.to" id="to" name="to" class="form-control">
+      </div>
+    
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" [(ngModel)]="flight.date" id="date" name="date" class="form-control">
+      </div>
+    
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </form>
+  </div>
+</div>

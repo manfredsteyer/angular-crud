@@ -7,59 +7,58 @@ import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
-  selector: '<%=dasherize(name)%>-edit',
+  selector: 'app-<%=dasherize(name)%>-edit',
   templateUrl: './<%=dasherize(name)%>-edit.component.html'
 })
 export class <%=classify(name)%>EditComponent implements OnInit {
 
-    id: string;
-    <%=camelize(name)%>: <%=classify(name)%>;
-    errors: string;
+  id: string;
+  <%=camelize(name)%>: <%=classify(name)%>;
+  feedback: any = {};
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private <%=camelize(name)%>Service: <%=classify(name)%>Service) { 
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private <%=camelize(name)%>Service: <%=classify(name)%>Service) {
+  }
 
-    ngOnInit() {
-        this
-            .route
-            .params
-            .pipe(
-                map(p => p['id']),
-                switchMap(id => {
-                    if (id === 'new') return of(new <%=classify(name)%>());
-                    return this.<%=camelize(name)%>Service.findById(id)
-                })
-            )
-            .subscribe(
-                <%=camelize(name)%> => { 
-                    this.<%=camelize(name)%> = <%=camelize(name)%>; 
-                    this.errors = ''; 
-                },
-                err => { 
-                    this.errors = 'Error loading'; 
-                }
-            );
-    }
+  ngOnInit() {
+    this
+      .route
+      .params
+      .pipe(
+        map(p => p.id),
+        switchMap(id => {
+          if (id === 'new') { return of(new <%=classify(name)%>()); }
+          return this.<%=camelize(name)%>Service.findById(id);
+        })
+      )
+      .subscribe(<%=camelize(name)%> => {
+          this.<%=camelize(name)%> = <%=camelize(name)%>;
+          this.feedback = {};
+        },
+        err => {
+          this.feedback = {type: 'warning', message: 'Error loading'};
+        }
+      );
+  }
 
-    save() {
-        this.<%=camelize(name)%>Service.save(this.<%=camelize(name)%>).subscribe(
-            <%=camelize(name)%> => { 
-                this.<%=camelize(name)%> = <%=camelize(name)%>; 
-                this.errors = 'Save was successful!'; 
-                setTimeout(() => {
-                    this.router.navigate(['/<%=dasherize(name)%>']);
-                }, 1000);                   
-            },
-            err => { 
-                this.errors = 'Error saving'; 
-            }
-        );
-    }
+  save() {
+    this.<%=camelize(name)%>Service.save(this.<%=camelize(name)%>).subscribe(
+      <%=camelize(name)%> => {
+        this.<%=camelize(name)%> = <%=camelize(name)%>;
+        this.feedback = {type: 'success', message: 'Save was successful!'};
+        setTimeout(() => {
+          this.router.navigate(['/<%=pluralize(name)%>']);
+        }, 1000);
+      },
+      err => {
+        this.feedback = {type: 'warning', message: 'Error saving'};
+      }
+    );
+  }
 
-    cancel() {
-        this.router.navigate(['/<%=dasherize(name)%>']);
-    }    
+  cancel() {
+    this.router.navigate(['/<%=pluralize(name)%>']);
+  }
 }
