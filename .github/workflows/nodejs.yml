@@ -33,7 +33,7 @@ jobs:
         npm i
         npm i --no-save ../angular-crud/*.tgz
         mkdir -p src/app/hotel
-        cp model.json src/app/hotel/.
+        mv model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
         ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
       working-directory: ./demo
