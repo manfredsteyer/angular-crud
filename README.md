@@ -1,4 +1,6 @@
-# angular-crud
+# Angular CRUD
+
+[![NPM version][npm-image]][npm-url] [![Build Status][actions-image]][actions-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 Generating CRUD applications with the Angular CLI and Schematics.
 
@@ -121,3 +123,9 @@ If you want to contribute one of those features or other features feel free to r
 
 - [Angular Workshops and Trainings](https://www.softwarearchitekt.at)
 
+[npm-image]: https://img.shields.io/npm/v/angular-crud.svg
+[npm-url]: https://www.npmjs.com/package/angular-crud
+[actions-image]: https://github.com/manfredsteyer/angular-crud/workflows/Angular%20CRUD%20CI/badge.svg?branch=master
+[actions-url]: https://github.com/manfredsteyer/angular-crud/actions
+[daviddm-image]: https://david-dm.org/manfredsteyer/angular-crud.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/manfredsteyer/angular-crud
