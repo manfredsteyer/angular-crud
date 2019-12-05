@@ -1,6 +1,6 @@
 # Angular CRUD
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][actions-image]][actions-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 Generating CRUD applications with the Angular CLI and Schematics.
 
