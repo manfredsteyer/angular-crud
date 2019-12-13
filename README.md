@@ -7,7 +7,7 @@ Generating CRUD applications with the Angular CLI and Schematics.
 <div>
   <p><img src="https://i.imgur.com/0MxujmK.png" alt="Scaffold files for CRUD" width="800"></p>
   <p><img src="https://i.imgur.com/u67zkJh.png" alt="Scaffold List" width="800"></p>
-  <p><img src="https://i.imgur.com/Sxn6nH3.png" alt="Scaffold Detail View" width="800"></p>
+  <p><img src="https://i.imgur.com/GsVkMbT.png" alt="Scaffold Detail View" width="800"></p>
 </div>
 
 ## Tutorial: Getting Started
