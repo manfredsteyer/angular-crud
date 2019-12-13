@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "preinstall": "npx npm-force-resolutions"
   },
   "private": true,
   "dependencies": {
@@ -44,5 +45,8 @@
     "ts-node": "~8.5.2",
     "tslint": "~5.20.1",
     "typescript": "~3.5.0"
+  },
+  "resolutions": {
+    "serialize-javascript": "~2.1.1"
   }
 }
