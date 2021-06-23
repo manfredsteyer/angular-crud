@@ -19,21 +19,21 @@ import * as crudModelUtils from '../utils/crud-model-utils'
 import { MenuOptions } from './schema';
 import { CrudModel } from './model';
 
-import { getWorkspace } from '@schematics/angular/utility/config';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { addModuleImportToModule, findModuleFromOptions } from 'schematics-utilities';
 import { capitalize } from '@angular-devkit/core/src/utils/strings';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 
-function setupOptions(options: MenuOptions, host: Tree): void {
-  const workspace = getWorkspace(host);
+async function setupOptions(options: MenuOptions, host: Tree): Promise<void> {
+  const workspace = await getWorkspace(host);
   if (!options.project) {
-    options.project = Object.keys(workspace.projects)[0];
+    options.project = workspace.projects.keys().next().value;
   }
-  const project = workspace.projects[options.project];
+  const project = workspace.projects.get(options.project);
 
   if (options.path === undefined) {
-    const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-    options.path = `/${project.root}/src/${projectDirName}`;
+    const projectDirName = project?.prefix === 'application' ? 'app' : 'lib';
+    options.path = `/${project?.sourceRoot}/src/${projectDirName}`;
   }
 
   const parsedPath = parseName(options.path, options.name);
@@ -65,7 +65,7 @@ export default function (options: MenuOptions): Rule {
       `${capitalize(model.entity)}Module`,
       `./${options.name}/${model.entity}.module`);
 
-    const templateSource = apply(url('./files'), [
+    const templateSource = apply(url(`./files/${options.style}`), [
       template({
         ...stringUtils,
         ...options,

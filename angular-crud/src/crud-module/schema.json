@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "id": "SchemanticsForMenu",
-    "title": "Menu Schema",
+    "$id": "AngularCRUD",
+    "title": "Angular CRUD Schema",
     "type": "object",
     "properties": {
       "name": {
@@ -16,7 +16,7 @@
         "description": "The name of the project.",
         "$default": {
           "$source": "projectName"
-        }        
+        }
       },
       "path": {
         "type": "string",
@@ -42,12 +42,14 @@
         "default": false,
         "description": "Export component from module?"
       },
-
       "model": {
         "type": "string",
         "default": "model.json",
         "description": "Model describing the crud form"
+      },
+      "platform": {
+        "type": "string",
+        "default": "bootstrap"
       }
     }
   }
-  
