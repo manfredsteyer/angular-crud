@@ -20,9 +20,10 @@ import { MenuOptions } from './schema';
 import { CrudModel } from './model';
 
 import { parseName } from '@schematics/angular/utility/parse-name';
-import { addModuleImportToModule, findModuleFromOptions } from 'schematics-utilities';
 import { capitalize } from '@angular-devkit/core/src/utils/strings';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { addModuleImportToModule } from '@angular/cdk/schematics';
+import { findModuleFromOptions } from '@schematics/angular/utility/find-module';
 
 async function setupOptions(options: MenuOptions, host: Tree): Promise<void> {
   const workspace = await getWorkspace(host);
@@ -61,9 +62,9 @@ export default function (options: MenuOptions): Rule {
 
     // add imports to app.module.ts
     addModuleImportToModule(host,
-      `${options.path}/app.module.ts`,
-      `${capitalize(model.entity)}Module`,
-      `./${options.name}/${model.entity}.module`);
+        `${options.path}/app.module.ts`,
+        `${capitalize(model.entity)}Module`,
+        `./${options.name}/${model.entity}.module`);
 
     const templateSource = apply(url(`./files/${options.style}`), [
       template({
