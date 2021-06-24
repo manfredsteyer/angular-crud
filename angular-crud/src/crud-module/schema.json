@@ -47,9 +47,10 @@
         "default": "model.json",
         "description": "Model describing the crud form"
       },
-      "platform": {
+      "style": {
         "type": "string",
-        "default": "bootstrap"
+        "default": "bootstrap",
+        "description": "CSS framework to use"
       }
     }
   }

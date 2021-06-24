@@ -1,4 +1,4 @@
-export interface MenuOptions {
+export interface CrudOptions {
   name: string;
   appRoot: string;
   path: string;
