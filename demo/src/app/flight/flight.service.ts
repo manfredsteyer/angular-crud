@@ -1,7 +1,7 @@
 import { Flight } from './flight';
 import { FlightFilter } from './flight-filter';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
@@ -63,7 +63,7 @@ export class FlightService {
       params = new HttpParams().set('ID', entity.id.toString());
       return this.http.delete<Flight>(url, {headers, params});
     }
-    return null;
+    return EMPTY;
   }
 }
 

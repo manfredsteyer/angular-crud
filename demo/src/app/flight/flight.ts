@@ -1,6 +1,6 @@
 export class Flight {
-  id: number;
-  from: string;
-  to: string;
-  date: Date;
+  id!: number;
+  from!: string;
+  to!: string;
+  date!: Date;
 }
