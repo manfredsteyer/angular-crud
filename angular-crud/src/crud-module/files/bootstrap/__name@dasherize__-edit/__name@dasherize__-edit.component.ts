@@ -12,8 +12,8 @@ import { of } from 'rxjs';
 })
 export class <%=classify(name)%>EditComponent implements OnInit {
 
-  id: string;
-  <%=camelize(name)%>: <%=classify(name)%>;
+  id!: string;
+  <%=camelize(name)%>!: <%=classify(name)%>;
   feedback: any = {};
 
   constructor(
