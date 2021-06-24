@@ -29,8 +29,7 @@ export function generate(options: CrudOptions): Rule {
       options.project = workspace.projects.keys().next().value;
     }
     const project = workspace.projects.get(options.project);
-    const projectPath = (project) ? project.root : './';
-    const appPath = `${projectPath}/src/app`;
+    const appPath = `${project?.sourceRoot}/app`;
 
     const modelFile = `${appPath}/${options.name}/${options.model}`;
     const modelBuffer = host.read(modelFile);
