@@ -1,6 +1,6 @@
 name: Angular CRUD CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -12,11 +12,16 @@ jobs:
         node-version: [12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install latest Chrome
+      run: |
+        sudo apt update
+        sudo apt --only-upgrade install google-chrome-stable
+        google-chrome --version
     - name: npm install, build, and test
       run: |
         npm ci
@@ -35,7 +40,7 @@ jobs:
         mkdir -p src/app/hotel
         mv model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
-        ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+        xvfb-run npm test -- --watch=false
       working-directory: ./demo
       env:
         CI: true
