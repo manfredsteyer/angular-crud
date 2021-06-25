@@ -89,6 +89,16 @@ describe('Angular CRUD Schematics', () => {
     }, done.fail);
   });
 
+  it('should use Bootstrap by default', (done) => {
+    const hotelListPath = '/projects/crudtest/src/app/hotel/hotel-list/hotel-list.component.html';
+    schematicRunner.runSchematicAsync('crud-module', defaultOptions, appTree).toPromise().then(tree => {
+      const listTemplate = tree.readContent(hotelListPath);
+      expect(listTemplate).toContain(`class="table table-centered table-hover mb-0"`);
+      expect(listTemplate).toContain(`class="btn btn-primary"`);
+      done();
+    }, done.fail);
+  });
+
   it('should create hotel-edit component files', (done) => {
     const files = ['hotel-edit.component.html', 'hotel-edit.component.spec.ts', 'hotel-edit.component.ts'];
     const hotelListPath = '/projects/crudtest/src/app/hotel/hotel-edit/';

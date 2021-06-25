@@ -16,7 +16,7 @@
         </div>
         <% } %>
         <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
-        <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default  ml-2">New</a>
+        <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default ml-2">New</a>
       </form>
     </div>
   </div>

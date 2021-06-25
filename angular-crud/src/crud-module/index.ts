@@ -20,9 +20,38 @@ import { capitalize } from '@angular-devkit/core/src/utils/strings';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { addModuleImportToModule } from '@angular/cdk/schematics';
 
+export const BOOTSTRAP = 'bootstrap';
+export const MATERIAL = 'material';
+
+function getFramework(host: Tree): string {
+  let possibleFiles = ['/package.json'];
+  const path = possibleFiles.filter(path => host.exists(path))[0];
+
+  const configBuffer = host.read(path);
+  if (configBuffer === null) {
+    throw new SchematicsException(`Could not find (${path})`);
+  } else {
+    const content = JSON.parse(configBuffer.toString());
+    if (content.dependencies['bootstrap']) {
+      return BOOTSTRAP;
+    } else if (content.dependencies['@angular/material']) {
+      return MATERIAL;
+    } else {
+      throw new SchematicsException('No supported frameworks found in your package.json!');
+    }
+  }
+}
+
 export function generate(options: CrudOptions): Rule {
 
   return async (host: Tree) => {
+    // allow passing the CSS framework in (for testing)
+    let cssFramework = options.style;
+
+    // if no CSS framework defined, try to detect it
+    if (!cssFramework) {
+      cssFramework = getFramework(host);
+    }
 
     const workspace = await getWorkspace(host);
     if (!options.project) {
@@ -47,7 +76,7 @@ export function generate(options: CrudOptions): Rule {
       `${capitalize(model.entity)}Module`,
       `./${options.name}/${model.entity}.module`);
 
-    const templateSource = apply(url(`./files/${options.style}`), [
+    const templateSource = apply(url(`./files/${cssFramework}`), [
       template({
         ...stringUtils,
         ...options,
