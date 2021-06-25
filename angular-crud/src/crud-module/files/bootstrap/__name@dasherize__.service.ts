@@ -1,7 +1,7 @@
 import { <%= classify(name) %> } from './<%=dasherize(name)%>';
 import { <%= classify(name) %>Filter } from './<%=dasherize(name)%>-filter';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 const headers = new HttpHeaders().set('Accept', 'application/json');
@@ -59,7 +59,7 @@ export class <%= classify(name) %>Service {
       params = new HttpParams().set('ID', entity.<%=id.name%>.toString());
       return this.http.delete<<%= classify(name) %>>(url, {headers, params});
     }
-    return null;
+    return EMPTY;
   }
 }
 

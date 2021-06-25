@@ -10,7 +10,7 @@ import { Flight } from '../flight';
 export class FlightListComponent implements OnInit {
 
   filter = new FlightFilter();
-  selectedFlight: Flight;
+  selectedFlight!: Flight;
   feedback: any = {};
 
   get flightList(): Flight[] {

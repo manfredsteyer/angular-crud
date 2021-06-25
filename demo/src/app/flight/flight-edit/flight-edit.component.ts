@@ -12,8 +12,8 @@ import { of } from 'rxjs';
 })
 export class FlightEditComponent implements OnInit {
 
-  id: string;
-  flight: Flight;
+  id!: string;
+  flight!: Flight;
   feedback: any = {};
 
   constructor(

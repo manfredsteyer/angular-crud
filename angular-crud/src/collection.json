@@ -2,7 +2,7 @@
     "schematics": {
       "menu": {
         "aliases": [ "crud-module" ],
-        "factory": "./crud-module",
+        "factory": "./crud-module/index#generate",
         "description": "Generates a crud module",
         "schema": "./crud-module/schema.json"
       }

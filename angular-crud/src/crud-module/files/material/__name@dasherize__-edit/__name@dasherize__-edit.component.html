@@ -1,0 +1,18 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active"><%=model.title%></li>
+  </ol>
+</nav>
+<h2 class="card-title"><%=model.title%> Detail</h2>
+<div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<form *ngIf="<%=camelize(name)%>" #editForm="ngForm" (ngSubmit)="save()">
+<% for (let field of model.fields) { %>
+  <p>
+    <label<%if (!field.readonly) {%> for="<%=field.name%>"<%}%>><%=field.label%></label>
+    <%if (field.readonly) {%>{{<%=camelize(name)%>.<%=field.name%> || 'n/a'}} <%}%><%if (!field.readonly && field.type === 'date'){ %><input matInput type="date" [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>"><% } else if (!field.readonly && field.type === 'number'){ %><input matInput type="number" [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>"><% } else if (!field.readonly) { %><input matInput [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>"><% } %>
+  </p>
+<% } %>
+  <button mat-raised-button type="submit" color="primary" [disabled]="!editForm.form.valid">Save</button>
+  <button mat-button type="button" (click)="cancel()">Cancel</button>
+</form>

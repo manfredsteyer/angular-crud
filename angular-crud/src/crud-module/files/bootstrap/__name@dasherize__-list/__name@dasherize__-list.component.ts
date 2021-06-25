@@ -10,7 +10,7 @@ import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
 export class <%= classify(name) %>ListComponent implements OnInit {
 
   filter = new <%= classify(name) %>Filter();
-  selected<%=classify(name)%>: <%= classify(name) %>;
+  selected<%=classify(name)%>!: <%= classify(name) %>;
   feedback: any = {};
 
   get <%=camelize(name)%>List(): <%= classify(name) %>[] {
