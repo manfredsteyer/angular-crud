@@ -1,0 +1,48 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active"><%=model.title%></li>
+  </ol>
+</nav>
+<h2><%=model.title%> List</h2>
+<form #f="ngForm">
+  <% for (let field of getFilterFields(model)) { %>
+  <mat-form-field>
+    <input matInput type="search" placeholder="Search" [(ngModel)]="filter.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>">
+  </mat-form-field>
+  <% } %>
+  <button mat-mini-fab (click)="search()" [disabled]="!f?.valid"><mat-icon>search</mat-icon></button>
+  <a mat-mini-fab [routerLink]="['../<%=pluralize(name)%>', 'new' ]"><mat-icon>plus</mat-icon></a>
+</form>
+<div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<mat-list *ngIf="<%=camelize(name)%>List.length > 0" flex>
+  <% let id = getId(model); %>
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr><% for (let field of model.fields) { %>
+          <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
+          <th class="border-top-0" scope="col" style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
+        <% for (let field of model.fields) { %>
+          <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]" class="btn btn-secondary">Edit</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <mat-list-item *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
+    <div class="mat-list-item-text">
+      <% for (let field of model.fields) { %>
+      <div mat-line>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</div><% } %>
+      <div mat-line>
+        <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]"><mat-icon>edit</mat-icon></a>&nbsp;
+        <button (click)="delete(item)"><mat-icon>delete</mat-icon></button>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>
