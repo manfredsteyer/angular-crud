@@ -10,7 +10,11 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x]
-
+        os: [ ubuntu-latest ]
+        app:
+          - demo
+          - demo-bootstrap
+          - demo-material
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
