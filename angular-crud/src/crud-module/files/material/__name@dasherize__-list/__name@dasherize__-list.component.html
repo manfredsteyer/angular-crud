@@ -14,35 +14,26 @@
   <button mat-mini-fab (click)="search()" [disabled]="!f?.valid"><mat-icon>search</mat-icon></button>
   <a mat-mini-fab [routerLink]="['../<%=pluralize(name)%>', 'new' ]"><mat-icon>plus</mat-icon></a>
 </form>
-<div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
-<mat-list *ngIf="<%=camelize(name)%>List.length > 0" flex>
+<div *ngIf="<%=camelize(name)%>List.length > 0">
+  <!-- todo: figure out better material styling for alerts -->
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+
   <% let id = getId(model); %>
-    <table class="table table-centered table-hover mb-0" id="datatable">
-      <thead>
-        <tr><% for (let field of model.fields) { %>
-          <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
-          <th class="border-top-0" scope="col" style="width:120px"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
-        <% for (let field of model.fields) { %>
-          <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
-          <td style="white-space: nowrap">
-            <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]" class="btn btn-secondary">Edit</a>&nbsp;
-            <button (click)="delete(item)" class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  <mat-list-item *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
-    <div class="mat-list-item-text">
-      <% for (let field of model.fields) { %>
-      <div mat-line>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</div><% } %>
-      <div mat-line>
-        <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]"><mat-icon>edit</mat-icon></a>&nbsp;
-        <button (click)="delete(item)"><mat-icon>delete</mat-icon></button>
-      </div>
-    </div>
-  </mat-list-item>
-</mat-list>
+  <table mat-table #table [dataSource]="flightList">
+    <% for (let field of model.fields) { %>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> <%=field.label%> </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]" mat-raised-button color="primary">Edit</a>&nbsp;
+        <button (click)="delete(item)" mat-button color="warn">Delete</button>
+      </mat-cell>
+    </ng-container>
+    <% } %>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+</div>

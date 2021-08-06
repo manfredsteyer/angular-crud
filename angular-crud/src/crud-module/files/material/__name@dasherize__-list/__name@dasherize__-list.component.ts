@@ -8,7 +8,7 @@ import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
   templateUrl: '<%=dasherize(name)%>-list.component.html'
 })
 export class <%= classify(name) %>ListComponent implements OnInit {
-
+  displayedColumns = [<% for (let field of model.fields) { %>'<%=field.label%>',<% } %>'action' ];
   filter = new <%= classify(name) %>Filter();
   selected<%=classify(name)%>!: <%= classify(name) %>;
   feedback: any = {};

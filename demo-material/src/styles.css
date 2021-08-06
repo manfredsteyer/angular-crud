@@ -1,0 +1,58 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+.mat-button {
+  text-align: left !important;
+}
+
+.menu-button mat-icon {
+  margin-right: 8px;
+}
+
+/* https://careydevelopment.us/blog/angular-how-to-add-breadcrumbs-to-your-ui */
+ol.breadcrumb {
+  padding: 0;
+  list-style-type: none;
+}
+
+.breadcrumb-item + .active {
+  color: inherit;
+  font-weight: 500;
+}
+
+.breadcrumb-item {
+  color: #3F51B5;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 0.5rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  color: rgb(108, 117, 125);
+  content: "/";
+}
+
+ol.breadcrumb li {
+  list-style-type: none;
+}
+
+@media only screen and (min-width: 960px) {
+  ol.breadcrumb li {
+    list-style-type: none;
+    display: inline
+  }
+}

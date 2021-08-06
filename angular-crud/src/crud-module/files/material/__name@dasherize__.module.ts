@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { <%= classify(name) %>ListComponent } from './<%=dasherize(name)%>-list/<%=dasherize(name)%>-list.component';
 import { <%= classify(name) %>EditComponent } from './<%=dasherize(name)%>-edit/<%=dasherize(name)%>-edit.component';
 import { <%= classify(name) %>Service } from './<%=dasherize(name)%>.service';
@@ -20,9 +22,11 @@ import { <%= name.toUpperCase() %>_ROUTES } from './<%=dasherize(name)%>.routes'
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
+    MatFormFieldModule,
     MatInputModule,
-    MatListModule,
-    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forChild(<%= name.toUpperCase() %>_ROUTES),
   ],
   declarations: [

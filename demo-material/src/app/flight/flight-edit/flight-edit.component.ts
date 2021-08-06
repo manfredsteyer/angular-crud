@@ -1,30 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { <%= classify(name) %>Service } from '../<%=dasherize(name)%>.service';
-import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
+import { FlightService } from '../flight.service';
+import { Flight } from '../flight';
 import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-<%=dasherize(name)%>-edit',
-  templateUrl: './<%=dasherize(name)%>-edit.component.html',
+  selector: 'app-flight-edit',
+  templateUrl: './flight-edit.component.html',
   styles: [
     // todo: figure out how to make width dynamic
     'form { display: flex; flex-direction: column; min-width: 500px; }',
     'form > * { width: 100% }'
   ]
 })
-export class <%=classify(name)%>EditComponent implements OnInit {
-
+export class FlightEditComponent implements OnInit {
   id!: string;
-  <%=camelize(name)%>!: <%=classify(name)%>;
+  flight!: Flight;
   feedback: any = {};
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private <%=camelize(name)%>Service: <%=classify(name)%>Service) {
+    private flightService: FlightService) {
   }
 
   ngOnInit() {
@@ -34,12 +33,12 @@ export class <%=classify(name)%>EditComponent implements OnInit {
       .pipe(
         map(p => p.id),
         switchMap(id => {
-          if (id === 'new') { return of(new <%=classify(name)%>()); }
-          return this.<%=camelize(name)%>Service.findById(id);
+          if (id === 'new') { return of(new Flight()); }
+          return this.flightService.findById(id);
         })
       )
-      .subscribe(<%=camelize(name)%> => {
-          this.<%=camelize(name)%> = <%=camelize(name)%>;
+      .subscribe(flight => {
+          this.flight = flight;
           this.feedback = {};
         },
         err => {
@@ -49,12 +48,12 @@ export class <%=classify(name)%>EditComponent implements OnInit {
   }
 
   save() {
-    this.<%=camelize(name)%>Service.save(this.<%=camelize(name)%>).subscribe(
-      <%=camelize(name)%> => {
-        this.<%=camelize(name)%> = <%=camelize(name)%>;
+    this.flightService.save(this.flight).subscribe(
+      flight => {
+        this.flight = flight;
         this.feedback = {type: 'success', message: 'Save was successful!'};
         setTimeout(() => {
-          this.router.navigate(['/<%=pluralize(name)%>']);
+          this.router.navigate(['/flights']);
         }, 1000);
       },
       err => {
@@ -64,6 +63,6 @@ export class <%=classify(name)%>EditComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/<%=pluralize(name)%>']);
+    this.router.navigate(['/flights']);
   }
 }
