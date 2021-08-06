@@ -135,7 +135,7 @@ describe('Angular CRUD Schematics', () => {
 
     schematicRunner.runSchematicAsync('crud-module', materialOptions, appTree).toPromise().then(tree => {
       const hotelList = tree.readContent('/projects/crudtest/src/app/hotel/hotel-list/hotel-list.component.html');
-      expect(hotelList).toMatch(/<mat-list/);
+      expect(hotelList).toMatch(/<table mat-table/);
 
       const hotelEdit = tree.readContent('/projects/crudtest/src/app/hotel/hotel-edit/hotel-edit.component.html');
       expect(hotelEdit).toMatch(/matInput/);

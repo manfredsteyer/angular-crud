@@ -19,7 +19,7 @@
   <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
 
   <% let id = getId(model); %>
-  <table mat-table #table [dataSource]="flightList">
+  <table mat-table #table [dataSource]="<%=camelize(name)%>List">
     <% for (let field of model.fields) { %>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> <%=field.label%> </mat-header-cell>
