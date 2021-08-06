@@ -1,5 +1,5 @@
-import {ExtraOptions, Routes, PreloadAllModules} from '@angular/router';
-import {HomeComponent} from './home/home.component';
+import { ExtraOptions, PreloadAllModules, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 export const APP_ROUTES: Routes = [
   {

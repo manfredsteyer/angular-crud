@@ -12,8 +12,8 @@ describe('FlightService', () => {
       providers: [FlightService]
     });
 
-    service = TestBed.get(FlightService);
-    httpMock = TestBed.get(HttpTestingController);
+    service = TestBed.inject(FlightService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
