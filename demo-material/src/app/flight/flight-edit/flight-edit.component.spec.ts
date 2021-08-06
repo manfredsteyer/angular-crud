@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FlightEditComponent } from './flight-edit.component';
 import { FlightService } from '../flight.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 describe('FlightEditComponent', () => {
   let component: FlightEditComponent;
@@ -12,7 +13,7 @@ describe('FlightEditComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FlightEditComponent],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule,MatFormFieldModule],
       providers: [FlightService]
     })
       .compileComponents();

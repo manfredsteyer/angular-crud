@@ -27,6 +27,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.simple-text').textContent).toContain('Flight42');
+    expect(compiled.querySelector('.navbar-brand').textContent).toContain('Flight42');
   }));
 });
