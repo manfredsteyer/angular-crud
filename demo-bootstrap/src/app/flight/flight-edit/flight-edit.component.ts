@@ -11,7 +11,6 @@ import { of } from 'rxjs';
   templateUrl: './flight-edit.component.html'
 })
 export class FlightEditComponent implements OnInit {
-
   id!: string;
   flight!: Flight;
   feedback: any = {};

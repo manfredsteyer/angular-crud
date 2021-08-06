@@ -31,6 +31,4 @@ export class HomeComponent implements OnInit {
   logout(): void {
     this._userName = '';
   }
-
-
 }

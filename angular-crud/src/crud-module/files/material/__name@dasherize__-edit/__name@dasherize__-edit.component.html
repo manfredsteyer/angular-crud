@@ -4,7 +4,7 @@
     <li class="breadcrumb-item active"><%=model.title%></li>
   </ol>
 </nav>
-<h2 class="card-title"><%=model.title%> Detail</h2>
+<h2><%=model.title%> Detail</h2>
 <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
 <form *ngIf="<%=camelize(name)%>" #editForm="ngForm" (ngSubmit)="save()">
 <% for (let field of model.fields) { %>

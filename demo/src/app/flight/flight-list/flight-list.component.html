@@ -27,9 +27,9 @@
   </div>
 </div>
 <div class="card" *ngIf="flightList.length > 0">
-  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div *ngIf="feedback.length" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
   <div class="table-responsive">
-    <table class="table table-centered table-hover mb-0" id="datatable">
+    <table class="table table-centered table-hover mt-2" id="datatable">
       <thead>
         <tr>
           <th class="border-top-0" scope="col">Id</th>

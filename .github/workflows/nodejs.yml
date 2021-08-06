@@ -14,7 +14,6 @@ jobs:
         app:
           - demo
           - demo-bootstrap
-          - demo-material
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -45,6 +44,6 @@ jobs:
         mv model.json src/app/hotel/.
         ng g angular-crud:crud-module hotel
         xvfb-run npm test -- --watch=false
-      working-directory: ./demo
+      working-directory: ./${{ matrix.app }}
       env:
         CI: true
