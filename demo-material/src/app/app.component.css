@@ -15,17 +15,16 @@ mat-sidenav {
 }
 
 .content {
-  height: calc(100vh - 98px);
+  min-height: calc(100vh - 98px);
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   color: gray;
-  /* todo: figure out how to make it so height is dynamic */
   height: auto;
 }
 
