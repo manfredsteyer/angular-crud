@@ -17,6 +17,7 @@ export class NavbarComponent {
     if (!this.sidebarVisible) {
       body.classList.add('nav-open');
       this.sidebarVisible = true;
+      console.log('making sidebar visible...');
     } else {
       this.sidebarVisible = false;
       body.classList.remove('nav-open');
