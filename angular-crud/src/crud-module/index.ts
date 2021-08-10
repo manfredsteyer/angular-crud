@@ -1,11 +1,9 @@
 import {
   apply,
-  branchAndMerge,
-  chain, FileEntry, forEach, MergeStrategy,
+  MergeStrategy,
   mergeWith,
   move,
   Rule,
-  SchematicContext,
   SchematicsException,
   template,
   Tree,
@@ -16,40 +14,55 @@ import { strings as stringUtils } from '@angular-devkit/core';
 import * as JSON5 from 'json5';
 import * as crudModelUtils from '../utils/crud-model-utils'
 
-import { MenuOptions } from './schema';
+import { CrudOptions } from './schema';
 import { CrudModel } from './model';
-
-import { getWorkspace } from '@schematics/angular/utility/config';
-import { parseName } from '@schematics/angular/utility/parse-name';
-import { addModuleImportToModule, findModuleFromOptions } from 'schematics-utilities';
 import { capitalize } from '@angular-devkit/core/src/utils/strings';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { addModuleImportToModule } from '@angular/cdk/schematics';
 
-function setupOptions(options: MenuOptions, host: Tree): void {
-  const workspace = getWorkspace(host);
-  if (!options.project) {
-    options.project = Object.keys(workspace.projects)[0];
+export const BOOTSTRAP = 'bootstrap';
+export const MATERIAL = 'material';
+export const PAPER_DASHBOARD = 'paper-dashboard';
+
+function getFramework(host: Tree): string {
+  let possibleFiles = ['/package.json'];
+  const path = possibleFiles.filter(path => host.exists(path))[0];
+
+  const configBuffer = host.read(path);
+  if (configBuffer === null) {
+    throw new SchematicsException(`Could not find (${path})`);
+  } else {
+    const content = JSON.parse(configBuffer.toString());
+    if (content.dependencies['bootstrap']) {
+      return BOOTSTRAP;
+    } else if (content.dependencies['@angular/material']) {
+      return MATERIAL;
+    } else {
+      return PAPER_DASHBOARD;
+    }
   }
-  const project = workspace.projects[options.project];
-
-  if (options.path === undefined) {
-    const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-    options.path = `/${project.root}/src/${projectDirName}`;
-  }
-
-  const parsedPath = parseName(options.path, options.name);
-  options.name = parsedPath.name;
-  options.path = parsedPath.path;
-
 }
 
-export default function (options: MenuOptions): Rule {
+export function generate(options: CrudOptions): Rule {
 
-  return (host: Tree, context: SchematicContext) => {
+  return async (host: Tree) => {
+    // allow passing the CSS framework in (for testing)
+    let cssFramework = options.style;
 
-    setupOptions(options, host);
-    options.module = findModuleFromOptions(host, options) || '';
+    // if no CSS framework defined, try to detect it
+    // defaults to paper-dashboard if nothing found (for backward compatibility)
+    if (!cssFramework) {
+      cssFramework = getFramework(host);
+    }
 
-    const modelFile = `${options.path}/${options.name}/${options.model}`;
+    const workspace = await getWorkspace(host);
+    if (!options.project) {
+      options.project = workspace.projects.keys().next().value;
+    }
+    const project = workspace.projects.get(options.project);
+    const appPath = `${project?.sourceRoot}/app`;
+
+    const modelFile = `${appPath}/${options.name}/${options.model}`;
     const modelBuffer = host.read(modelFile);
 
     if (modelBuffer === null) {
@@ -61,33 +74,20 @@ export default function (options: MenuOptions): Rule {
 
     // add imports to app.module.ts
     addModuleImportToModule(host,
-      `${options.path}/app.module.ts`,
+      `${appPath}/app.module.ts`,
       `${capitalize(model.entity)}Module`,
       `./${options.name}/${model.entity}.module`);
 
-    const templateSource = apply(url('./files'), [
+    const templateSource = apply(url(`./files/${cssFramework}`), [
       template({
         ...stringUtils,
         ...options,
         ...crudModelUtils as any,
         model
       }),
-      move(`${options.path}/${options.name}` || ''),
-      // fix for https://github.com/angular/angular-cli/issues/11337
-      forEach((fileEntry: FileEntry) => {
-        if (host.exists(fileEntry.path)) {
-          host.overwrite(fileEntry.path, fileEntry.content);
-        }
-        return fileEntry;
-      }),
+      move(`${appPath}/${options.name}`),
     ]);
 
-    const rule = chain([
-      branchAndMerge(chain([
-        mergeWith(templateSource, MergeStrategy.Overwrite)
-      ])),
-    ]);
-
-    return rule(host, context);
+    return mergeWith(templateSource, MergeStrategy.Overwrite);
   }
 }

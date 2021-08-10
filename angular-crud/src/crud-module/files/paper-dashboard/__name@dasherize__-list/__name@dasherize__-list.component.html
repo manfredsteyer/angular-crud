@@ -1,0 +1,44 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+  <li class="breadcrumb-item active"><%=model.title%></li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title"><%=model.title%> List</h2>
+  </div>
+  <div class="content">
+    <form #f="ngForm">
+      <% for (let field of getFilterFields(model)) { %>
+      <div class="form-group">
+        <label for="<%=field.name%>"><%=field.label%>:</label>
+        <input [(ngModel)]="filter.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" class="form-control">
+      </div>
+      <% } %>
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
+      <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default">New</a>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="<%=camelize(name)%>List.length > 0">
+  <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive"><% let id = getId(model); %>
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr><% for (let field of model.fields) { %>
+          <th class="border-top-0" scope="col"><%=field.label%></th><% } %>
+          <th class="border-top-0" scope="col" style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
+        <% for (let field of model.fields) { %>
+          <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]" class="btn btn-secondary">Edit</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

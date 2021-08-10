@@ -1,0 +1,37 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active">Flight</li>
+  </ol>
+</nav>
+<h2>Flight Detail</h2>
+<div *ngIf="feedback.length" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<form *ngIf="flight" #editForm="ngForm" (ngSubmit)="save()">
+
+  <mat-form-field>
+    <mat-label>Id</mat-label>
+    <input matInput [(ngModel)]="flight.id" id="id" name="id" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>From</mat-label>
+    <input matInput [(ngModel)]="flight.from" id="from" name="from">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>To</mat-label>
+    <input matInput [(ngModel)]="flight.to" id="to" name="to">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="flight.date" id="date" name="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="button-row" role="group">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.form.valid">Save</button>
+    <button type="button" mat-button color="accent" (click)="cancel()">Cancel</button>
+  </div>
+</form>

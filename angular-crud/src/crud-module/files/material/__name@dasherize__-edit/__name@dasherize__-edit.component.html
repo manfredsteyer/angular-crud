@@ -1,0 +1,21 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active"><%=model.title%></li>
+  </ol>
+</nav>
+<h2><%=model.title%> Detail</h2>
+<!-- todo: figure out better material styling for alerts -->
+<div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+<form *ngIf="<%=camelize(name)%>" #editForm="ngForm" (ngSubmit)="save()">
+<% for (let field of model.fields) { %>
+  <mat-form-field>
+    <mat-label<%if (!field.readonly) {%> for="<%=field.name%>"<%}%>><%=field.label%></mat-label>
+    <%if (field.readonly) {%><input matInput [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>" readonly> <%}%><%if (!field.readonly && field.type === 'date'){ %><input matInput [matDatepicker]="picker" [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>"><mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle><mat-datepicker #picker></mat-datepicker><% } else if (!field.readonly && field.type === 'number'){ %><input matInput type="number" [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>"><% } else if (!field.readonly) { %><input matInput [(ngModel)]="<%=camelize(name)%>.<%=field.name%>" id="<%=field.name%>" name="<%=field.name%>" placeholder="<%=field.label%>"><% } %>
+  </mat-form-field>
+<% } %>
+  <div class="button-row" role="group">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.form.valid">Save</button>
+    <button type="button" mat-button color="accent" (click)="cancel()">Cancel</button>
+  </div>
+</form>

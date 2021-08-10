@@ -89,6 +89,16 @@ describe('Angular CRUD Schematics', () => {
     }, done.fail);
   });
 
+  it('should use Bootstrap by default', (done) => {
+    const hotelListPath = '/projects/crudtest/src/app/hotel/hotel-list/hotel-list.component.html';
+    schematicRunner.runSchematicAsync('crud-module', defaultOptions, appTree).toPromise().then(tree => {
+      const listTemplate = tree.readContent(hotelListPath);
+      expect(listTemplate).toContain(`class="table table-centered table-hover mb-0"`);
+      expect(listTemplate).toContain(`class="btn btn-primary"`);
+      done();
+    }, done.fail);
+  });
+
   it('should create hotel-edit component files', (done) => {
     const files = ['hotel-edit.component.html', 'hotel-edit.component.spec.ts', 'hotel-edit.component.ts'];
     const hotelListPath = '/projects/crudtest/src/app/hotel/hotel-edit/';
@@ -115,6 +125,34 @@ describe('Angular CRUD Schematics', () => {
       const appModule = tree.readContent('/projects/crudtest/src/app/app.module.ts');
       expect(appModule).toMatch(/.\/hotel\/hotel.module/);
       expect(appModule).toMatch(/HotelModule/);
+      done();
+    }, done.fail);
+  });
+
+  it('should generate Bootstrap templates', (done) => {
+    const bootstrapOptions = {...defaultOptions};
+    bootstrapOptions.style = 'bootstrap';
+
+    schematicRunner.runSchematicAsync('crud-module', bootstrapOptions, appTree).toPromise().then(tree => {
+      const hotelList = tree.readContent('/projects/crudtest/src/app/hotel/hotel-list/hotel-list.component.html');
+      expect(hotelList).toMatch(/<table class="table/);
+
+      const hotelEdit = tree.readContent('/projects/crudtest/src/app/hotel/hotel-edit/hotel-edit.component.html');
+      expect(hotelEdit).toMatch(/class="form-control"/);
+      done();
+    }, done.fail);
+  });
+
+  it('should generate Angular Material templates', (done) => {
+    const materialOptions = {...defaultOptions};
+    materialOptions.style = 'material';
+
+    schematicRunner.runSchematicAsync('crud-module', materialOptions, appTree).toPromise().then(tree => {
+      const hotelList = tree.readContent('/projects/crudtest/src/app/hotel/hotel-list/hotel-list.component.html');
+      expect(hotelList).toMatch(/<table mat-table/);
+
+      const hotelEdit = tree.readContent('/projects/crudtest/src/app/hotel/hotel-edit/hotel-edit.component.html');
+      expect(hotelEdit).toMatch(/matInput/);
       done();
     }, done.fail);
   });

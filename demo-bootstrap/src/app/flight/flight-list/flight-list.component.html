@@ -1,0 +1,47 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active">Flight</li>
+  </ol>
+</nav>
+<h2>Flight List</h2>
+<form #f="ngForm" class="form-inline">
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input [(ngModel)]="filter.from" id="from" name="from" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="to">To:</label>
+    <input [(ngModel)]="filter.to" id="to" name="to" class="form-control">
+  </div>
+  <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary mt-2">Search</button>
+  <a [routerLink]="['../flights', 'new' ]" class="btn btn-default ml-2">New</a>
+</form>
+<div *ngIf="flightList.length > 0">
+  <div *ngIf="feedback.length" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive">
+    <table class="table table-centered table-hover mt-2" id="datatable">
+      <thead>
+        <tr>
+          <th class="border-top-0" scope="col">Id</th>
+          <th class="border-top-0" scope="col">From</th>
+          <th class="border-top-0" scope="col">To</th>
+          <th class="border-top-0" scope="col">Date</th>
+          <th class="border-top-0" scope="col" style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of flightList" [class.active]="item === selectedFlight">
+          <td>{{item.id}}</td>
+          <td>{{item.from}}</td>
+          <td>{{item.to}}</td>
+          <td>{{item.date | date}}</td>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../flights', item.id ]" class="btn btn-secondary">Edit</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

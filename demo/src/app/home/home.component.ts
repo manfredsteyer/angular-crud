@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute) {
   }
 
-  needsLogin: boolean;
+  needsLogin: boolean | undefined;
   _userName: string = '';
 
   ngOnInit() {

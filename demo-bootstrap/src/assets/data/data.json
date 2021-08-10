@@ -1,0 +1,23 @@
+[
+  {
+    "id": 3,
+    "from": "Hamburg",
+    "to": "Graz",
+    "date": "2018-01-31T08:20:27.6859644+00:00",
+    "delayed": false
+  },
+  {
+    "id": 4,
+    "from": "Hamburg",
+    "to": "Graz",
+    "date": "2018-01-31T10:20:27.6859644+00:00",
+    "delayed": false
+  },
+  {
+    "id": 5,
+    "from": "Hamburg",
+    "to": "Graz",
+    "date": "2018-01-31T13:20:27.6859644+00:00",
+    "delayed": false
+  }
+]

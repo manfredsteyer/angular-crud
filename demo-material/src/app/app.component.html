@@ -1,0 +1,27 @@
+<!-- https://zoaibkhan.com/blog/create-a-responsive-sidebar-menu-with-angular-material/ -->
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  <img src="../../assets/img/angular2-logo.png" width="42">
+  Flight42
+</mat-toolbar>
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <sidebar-cmp></sidebar-cmp>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!--<navbar-cmp></navbar-cmp>-->
+      <router-outlet></router-outlet>
+      <router-outlet name="aux"></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
