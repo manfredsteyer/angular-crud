@@ -149,7 +149,7 @@ If you want to contribute one of those features or other features feel free to r
 
 [npm-image]: https://img.shields.io/npm/v/angular-crud.svg
 [npm-url]: https://www.npmjs.com/package/angular-crud
-[actions-image]: https://github.com/manfredsteyer/angular-crud/workflows/Angular%20CRUD%20CI/badge.svg?branch=master
+[actions-image]: https://github.com/manfredsteyer/angular-crud/workflows/Angular%20CRUD%20CI/badge.svg?branch=main
 [actions-url]: https://github.com/manfredsteyer/angular-crud/actions
 [daviddm-image]: https://david-dm.org/manfredsteyer/angular-crud.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/manfredsteyer/angular-crud
