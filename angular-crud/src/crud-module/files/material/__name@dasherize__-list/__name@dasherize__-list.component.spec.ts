@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { <%=classify(name)%>ListComponent } from './<%=dasherize(name)%>-list.component';
@@ -15,7 +16,7 @@ describe('<%=classify(name)%>ListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [<%=classify(name)%>ListComponent],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, MatFormFieldModule, MatIconModule, MatInputModule, NoopAnimationsModule],
       providers: [<%=classify(name)%>Service]
     }).compileComponents();
   }));

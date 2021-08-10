@@ -7,6 +7,7 @@ import { FlightService } from '../flight.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('FlightListComponent', () => {
   let component: FlightListComponent;
@@ -15,7 +16,7 @@ describe('FlightListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FlightListComponent],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, MatFormFieldModule, MatInputModule, MatIconModule, NoopAnimationsModule],
       providers: [FlightService]
     })
       .compileComponents();

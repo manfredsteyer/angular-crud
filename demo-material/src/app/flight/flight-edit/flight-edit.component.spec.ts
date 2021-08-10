@@ -13,7 +13,7 @@ describe('FlightEditComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FlightEditComponent],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule,MatFormFieldModule],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, MatFormFieldModule],
       providers: [FlightService]
     })
       .compileComponents();

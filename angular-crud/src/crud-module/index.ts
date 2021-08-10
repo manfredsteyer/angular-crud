@@ -55,6 +55,8 @@ export function generate(options: CrudOptions): Rule {
       cssFramework = getFramework(host);
     }
 
+    console.log('cssFramework', cssFramework)
+
     const workspace = await getWorkspace(host);
     if (!options.project) {
       options.project = workspace.projects.keys().next().value;
