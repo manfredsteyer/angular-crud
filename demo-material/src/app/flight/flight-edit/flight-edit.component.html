@@ -10,7 +10,7 @@
 
   <mat-form-field>
     <mat-label>Id</mat-label>
-    <input matInput [(ngModel)]="flight.id" id="id" name="id">
+    <input matInput [(ngModel)]="flight.id" id="id" name="id" readonly>
   </mat-form-field>
 
   <mat-form-field>
@@ -32,6 +32,6 @@
 
   <div class="button-row" role="group">
     <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.form.valid">Save</button>
-    <button type="button" mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+    <button type="button" mat-button color="accent" (click)="cancel()">Cancel</button>
   </div>
 </form>

@@ -8,14 +8,14 @@
 <form #f="ngForm">
   <mat-form-field>
     <mat-label>From:</mat-label>
-    <input matInput [(ngModel)]="filter.from" id="from" name="from">
+    <input matInput [(ngModel)]="filter.from" id="from" name="from" type="search">
   </mat-form-field>
   <mat-form-field>
     <mat-label>To:</mat-label>
-    <input matInput [(ngModel)]="filter.to" id="to" name="to">
+    <input matInput [(ngModel)]="filter.to" id="to" name="to" type="search">
   </mat-form-field>
-  <button (click)="search()" [disabled]="!f?.valid" mat-raised-button color="primary">Search</button>
-  <a [routerLink]="['../flights', 'new' ]" mat-raised-button>New</a>
+  <button (click)="search()" [disabled]="!f?.valid" mat-mini-fab color="primary"><mat-icon>search</mat-icon></button>
+  <a [routerLink]="['../flights', 'new' ]" mat-mini-fab color="accent"><mat-icon>add</mat-icon></a>
 </form>
 <div *ngIf="flightList.length > 0">
 
@@ -42,7 +42,7 @@
       <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
       <mat-cell *matCellDef="let item">
         <a [routerLink]="['../flights', item.id ]" mat-raised-button color="primary">Edit</a>&nbsp;
-        <button (click)="delete(item)" mat-button color="warn">Delete</button>
+        <button (click)="delete(item)" mat-button color="warn"><mat-icon>delete</mat-icon></button>
       </mat-cell>
     </ng-container>
 

@@ -7,7 +7,7 @@
     <h2 class="title"><%=model.title%> Detail</h2>
   </div>
   <div class="content">
-    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
     <form *ngIf="<%=camelize(name)%>" #editForm="ngForm" (ngSubmit)="save()">
     <% for (let field of model.fields) { %>
       <div class="form-group">

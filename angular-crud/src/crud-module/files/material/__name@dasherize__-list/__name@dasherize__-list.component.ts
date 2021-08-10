@@ -5,10 +5,14 @@ import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
 
 @Component({
   selector: 'app-<%=dasherize(name)%>',
-  templateUrl: '<%=dasherize(name)%>-list.component.html'
+  templateUrl: '<%=dasherize(name)%>-list.component.html',
+  styles: [
+    // todo: figure out how to make width dynamic
+    'table { min-width: 600px }',
+  ]
 })
 export class <%= classify(name) %>ListComponent implements OnInit {
-  displayedColumns = [<% for (let field of model.fields) { %>'<%=field.label%>',<% } %>'action' ];
+  displayedColumns = [<% for (let field of model.fields) { %>'<%=field.name%>',<% } %>'actions'];
   filter = new <%= classify(name) %>Filter();
   selected<%=classify(name)%>!: <%= classify(name) %>;
   feedback: any = {};

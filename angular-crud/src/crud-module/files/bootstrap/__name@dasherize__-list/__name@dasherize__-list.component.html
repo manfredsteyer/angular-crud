@@ -16,7 +16,7 @@
   <a [routerLink]="['../<%=pluralize(name)%>', 'new' ]" class="btn btn-default ml-2">New</a>
 </form>
 <div *ngIf="<%=camelize(name)%>List.length > 0">
-  <div *ngIf="feedback.length" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div *ngIf="feedback.message" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
   <div class="table-responsive"><% let id = getId(model); %>
     <table class="table table-centered table-hover mb-0" id="datatable">
       <thead>
@@ -26,8 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>">
-        <% for (let field of model.fields) { %>
+        <tr *ngFor="let item of <%=camelize(name)%>List" [class.active]="item === selected<%=classify(name)%>"><% for (let field of model.fields) { %>
           <td>{{item.<%=field.name%><%=(field.control === 'date')? ' | date': '' %>}}</td><% } %>
           <td style="white-space: nowrap">
             <a [routerLink]="['../<%=pluralize(name)%>', item.<%=id.name%> ]" class="btn btn-secondary">Edit</a>&nbsp;

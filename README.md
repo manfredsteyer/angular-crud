@@ -18,18 +18,28 @@ Generating CRUD applications with the Angular CLI and Schematics.
     git clone https://github.com/manfredsteyer/angular-crud
     ```
 
-   You could also start with an empty project but this repo contains everything you need to get started quickly: theming, configured routing and a menu.
+   You could also start with an empty project but this repo contains everything you need to get started quickly: theming, configured routing, and a menu.
 
-2. Install the needed npm packages:
+2. Build the angular-crud schematic:
+
+   ```
+   cd angular-crud
+   npm install
+   npm pack
+   ```
+   
+3. Install the needed npm packages:
 
    ```
    cd demo
+   npm i --no-save ../angular-crud/*.tgz
+   # or install the latest released version with: npm install -D angular-crud
    npm install
    ```
 
-   Note, that this also installs `angular-crud`.
+   NOTE: For Bootstrap and Angular Material, use `demo-bootstrap` and `demo-material` in the first command.
 
-3. Switch to the folder `src/app` and create a sub-folder `hotel` with a file `model.json`. Put the following content into this file:
+4. Switch to the folder `src/app` and create a sub-folder `hotel` with a file `model.json`. Put the following content into this file:
 
     ```json
     { 
@@ -69,28 +79,17 @@ Generating CRUD applications with the Angular CLI and Schematics.
     }
     ```
 
-	The generator is using a json5 parser. This means that you can use comments, omit quotation marks and use trailing commas.  
+	The generator is using a json5 parser. This means that you can use comments, omit quotation marks, and use trailing commas.  
 
-4. In your project's root directory, run the following Angular CLI based command:
+5. In your project's root directory, run the following Angular CLI based command:
 
     ```
-    ng g angular-crud:crud-module hotel --style paper-dashboard
+    ng g angular-crud:crud-module hotel
     ```
 
-5. Now, you get files generated for managing hotels.
+6. Have a look at the generated files.
 
-6. Have a look to the generated files
-
-7. Open the file `sidebar.component.html` and add a link to the generated route:
-
-    ```html
-    <li>
-      <a routerLink="hotels">
-        <i class="ti-arrow-top-right"></i>
-        <p>Hotels</p>
-      </a>
-    </li>
-    ```
+7. Open the file `sidebar.component.html` and uncomment the link to the generated route.
 
 8. Switch to the project's root and start the application:
 
@@ -98,16 +97,41 @@ Generating CRUD applications with the Angular CLI and Schematics.
     npm start
     ```
 
-9.  Open <http://localhost:4200> and switch to the menu item `Hotels`. You should now see your generated form.
+9. Open <http://localhost:4200> and switch to the menu item `Hotels`. You should now see your generated form.
 
-    Please note, that you cannot save  records with Ids 1 to 5 b/c they are restricted for demos.
+    Please note, that you cannot save records with Ids 1 to 5 b/c they are restricted for demos.
+
+## Bootstrap and Angular Material
+
+This library supports Bootstrap, Angular Material, and Paper Dashboard templates. It attempts to determine which templates to use by inspecting your `package.json`. You can also force which templates to use:
+
+- `--style bootstrap`: forces Bootstrap templates
+- `--style material`: forces Angular Material templates
+- `--style paper-dashboard`: forces Paper Dashboard templates
+
+Paper Dashboard is the default if you don't specify a `--style` parameter and no Bootstrap or Angular Material dependencies are found in `package.json`.
+
+### Bootstrap Screenshots
+
+<div>
+  <p><img src="https://imgur.com/8KICSze.png" alt="Bootstrap List" width="800"></p>
+  <p><img src="https://imgur.com/VXDoUbB.png" alt="Bootstrap Detail View" width="800"></p>
+</div>
+
+### Material Screenshots
+
+<div>
+  <p><img src="https://imgur.com/f4fUECE.png" alt="Angular Material List" width="800"></p>
+  <p><img src="https://imgur.com/VTviuMS.png" alt="Angular Material Detail View" width="800"></p>
+</div>
 
 ## Extending angular-crud
 
-You can fork this repo and extend the generated code using Schematics. Infos about how to use Schematics can be found here:
+You can fork this repo and extend the generated code using Schematics. Information about how to use Schematics can be found here:
 
 - [Generating Custom Code With The Angular CLI And Schematics](https://softwarearchitekt.at/post/2017/10/29/generating-custom-code-with-the-angular-cli-and-schematics.aspx)
 - [Automatically Updating Angular Modules With Schematics And The CLI](https://softwarearchitekt.at/post/2017/12/01/generating-angular-code-with-schematics-part-ii-modifying-ngmodules.aspx)
+- [Use Angular Schematics to Simplify Your Life](https://developer.okta.com/blog/2019/02/13/angular-schematics)
 
 ## Call for Contributions
 

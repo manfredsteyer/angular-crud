@@ -5,7 +5,10 @@ import { Flight } from '../flight';
 
 @Component({
   selector: 'app-flight',
-  templateUrl: 'flight-list.component.html'
+  templateUrl: 'flight-list.component.html',
+  styles: [
+    'table { min-width: 600px }',
+  ]
 })
 export class FlightListComponent implements OnInit {
   displayedColumns = ['id', 'from', 'to', 'date', 'actions'];

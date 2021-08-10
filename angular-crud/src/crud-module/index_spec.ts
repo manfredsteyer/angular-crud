@@ -129,6 +129,20 @@ describe('Angular CRUD Schematics', () => {
     }, done.fail);
   });
 
+  it('should generate Bootstrap templates', (done) => {
+    const bootstrapOptions = {...defaultOptions};
+    bootstrapOptions.style = 'bootstrap';
+
+    schematicRunner.runSchematicAsync('crud-module', bootstrapOptions, appTree).toPromise().then(tree => {
+      const hotelList = tree.readContent('/projects/crudtest/src/app/hotel/hotel-list/hotel-list.component.html');
+      expect(hotelList).toMatch(/<table class="table/);
+
+      const hotelEdit = tree.readContent('/projects/crudtest/src/app/hotel/hotel-edit/hotel-edit.component.html');
+      expect(hotelEdit).toMatch(/class="form-control"/);
+      done();
+    }, done.fail);
+  });
+
   it('should generate Angular Material templates', (done) => {
     const materialOptions = {...defaultOptions};
     materialOptions.style = 'material';

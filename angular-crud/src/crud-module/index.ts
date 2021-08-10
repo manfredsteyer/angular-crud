@@ -22,6 +22,7 @@ import { addModuleImportToModule } from '@angular/cdk/schematics';
 
 export const BOOTSTRAP = 'bootstrap';
 export const MATERIAL = 'material';
+export const PAPER_DASHBOARD = 'paper-dashboard';
 
 function getFramework(host: Tree): string {
   let possibleFiles = ['/package.json'];
@@ -37,7 +38,7 @@ function getFramework(host: Tree): string {
     } else if (content.dependencies['@angular/material']) {
       return MATERIAL;
     } else {
-      throw new SchematicsException('No supported frameworks found in your package.json!');
+      return PAPER_DASHBOARD;
     }
   }
 }
@@ -49,6 +50,7 @@ export function generate(options: CrudOptions): Rule {
     let cssFramework = options.style;
 
     // if no CSS framework defined, try to detect it
+    // defaults to paper-dashboard if nothing found (for backward compatibility)
     if (!cssFramework) {
       cssFramework = getFramework(host);
     }
