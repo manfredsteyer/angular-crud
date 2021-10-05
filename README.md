@@ -109,10 +109,10 @@ This library supports Bootstrap, Angular Material, and Paper Dashboard templates
 - `--style material`: forces Angular Material templates
 - `--style paper-dashboard`: forces Paper Dashboard templates
 
-You need to use the Schematics CLI to pass in this option:
+For example:
 
 ```shell
-npx @angular-devkit/schematics-cli angular-crud:crud-module note --style bootstrap
+ng g angular-crud:crud-module note --style bootstrap
 ```
 
 Paper Dashboard is the default if you don't specify a `--style` parameter and no Bootstrap or Angular Material dependencies are found in `package.json`.

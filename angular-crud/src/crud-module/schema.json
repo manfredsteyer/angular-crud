@@ -46,6 +46,10 @@
         "type": "string",
         "default": "model.json",
         "description": "Model describing the crud form"
+      },
+      "style": {
+        "type": "string",
+        "default": "paper-dashboard"
       }
     }
   }
