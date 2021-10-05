@@ -135,6 +135,7 @@ Paper Dashboard is the default if you don't specify a `--style` parameter and no
 
 You can fork this repo and extend the generated code using Schematics. Information about how to use Schematics can be found here:
 
+- 📺 [Introduction to Angular CRUD](https://www.youtube.com/watch?v=3mqWrmZtefE)
 - [Generating Custom Code With The Angular CLI And Schematics](https://softwarearchitekt.at/post/2017/10/29/generating-custom-code-with-the-angular-cli-and-schematics.aspx)
 - [Automatically Updating Angular Modules With Schematics And The CLI](https://softwarearchitekt.at/post/2017/12/01/generating-angular-code-with-schematics-part-ii-modifying-ngmodules.aspx)
 - [Use Angular Schematics to Simplify Your Life](https://developer.okta.com/blog/2019/02/13/angular-schematics)
