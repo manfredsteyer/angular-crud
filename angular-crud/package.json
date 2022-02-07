@@ -1,6 +1,6 @@
 {
   "name": "angular-crud",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Generate CRUD applications with Angular, the CLI, and Schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
