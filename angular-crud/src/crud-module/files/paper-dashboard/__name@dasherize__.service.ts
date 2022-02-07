@@ -21,13 +21,14 @@ export class <%= classify(name) %>Service {
   }
 
   load(filter: <%= classify(name) %>Filter): void {
-    this.find(filter).subscribe(result => {
+    this.find(filter).subscribe({
+      next: result => {
         this.<%=camelize(name)%>List = result;
       },
-      err => {
+      error: err => {
         console.error('error loading', err);
       }
-    );
+    });
   }
 
   find(filter: <%= classify(name) %>Filter): Observable<<%= classify(name) %>[]> {

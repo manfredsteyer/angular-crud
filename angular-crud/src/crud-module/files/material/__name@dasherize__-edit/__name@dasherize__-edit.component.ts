@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { <%= classify(name) %>Service } from '../<%=dasherize(name)%>.service';
 import { <%= classify(name) %> } from '../<%=dasherize(name)%>';
 import { map, switchMap } from 'rxjs/operators';
@@ -32,38 +31,39 @@ export class <%=classify(name)%>EditComponent implements OnInit {
       .route
       .params
       .pipe(
-        map(p => p.id),
+        map(p => p['id']),
         switchMap(id => {
           if (id === 'new') { return of(new <%=classify(name)%>()); }
           return this.<%=camelize(name)%>Service.findById(id);
         })
       )
-      .subscribe(<%=camelize(name)%> => {
+      .subscribe({
+        next: <%=camelize(name)%> => {
           this.<%=camelize(name)%> = <%=camelize(name)%>;
           this.feedback = {};
         },
-        err => {
+        error: err => {
           this.feedback = {type: 'warning', message: 'Error loading'};
         }
-      );
+      });
   }
 
   save() {
-    this.<%=camelize(name)%>Service.save(this.<%=camelize(name)%>).subscribe(
-      <%=camelize(name)%> => {
+    this.<%=camelize(name)%>Service.save(this.<%=camelize(name)%>).subscribe({
+      next: <%=camelize(name)%> => {
         this.<%=camelize(name)%> = <%=camelize(name)%>;
         this.feedback = {type: 'success', message: 'Save was successful!'};
-        setTimeout(() => {
-          this.router.navigate(['/<%=pluralize(name)%>']);
+        setTimeout(async () => {
+          await this.router.navigate(['/<%=pluralize(name)%>']);
         }, 1000);
       },
-      err => {
+      error: err => {
         this.feedback = {type: 'warning', message: 'Error saving'};
       }
-    );
+    });
   }
 
-  cancel() {
-    this.router.navigate(['/<%=pluralize(name)%>']);
+  async cancel() {
+    await this.router.navigate(['/<%=pluralize(name)%>']);
   }
 }

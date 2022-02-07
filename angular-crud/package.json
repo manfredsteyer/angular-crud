@@ -19,20 +19,20 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "devDependencies": {
-    "@types/jasmine": "^3.8.2",
+    "@types/jasmine": "^3.10.3",
     "@types/json5": "0.0.30",
-    "@types/node": "^16.4.13",
+    "@types/node": "^17.0.15",
     "chalk": "^4.1.2",
     "istanbul": "0.4.5",
-    "jasmine": "^3.8.0",
-    "typescript": "^4.3.5"
+    "jasmine": "^4.0.2",
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "json5": "^2.2.0",
-    "@angular-devkit/core": "^12.2.0",
-    "@angular-devkit/schematics": "^12.2.0",
-    "@angular/cdk": "^12.2.0",
-    "@schematics/angular": "^12.2.0"
+    "@angular-devkit/core": "^13.2.2",
+    "@angular-devkit/schematics": "^13.2.2",
+    "@angular/cdk": "^13.2.1",
+    "@schematics/angular": "^13.2.2"
   },
   "repository": {
     "type": "git",
