@@ -33,8 +33,8 @@ export class <%=classify(name)%>EditComponent implements OnInit {
         })
       )
       .subscribe({
-        next: < %= camelize(name) % > => {
-          this. < %= camelize(name) % > = < %= camelize(name) % >;
+        next: <%=camelize(name)%> => {
+          this.<%=camelize(name)%> = <%=camelize(name)%>;
           this.feedback = {};
         },
         error: err => {
