@@ -38,16 +38,17 @@ export class <%= classify(name) %>ListComponent implements OnInit {
 
   delete(<%=camelize(name)%>: <%= classify(name) %>): void {
     if (confirm('Are you sure?')) {
-      this.<%=camelize(name)%>Service.delete(<%=camelize(name)%>).subscribe(() => {
+      this.<%=camelize(name)%>Service.delete(<%=camelize(name)%>).subscribe({
+        next: () => {
           this.feedback = {type: 'success', message: 'Delete was successful!'};
           setTimeout(() => {
             this.search();
           }, 1000);
         },
-        err => {
+        error: err => {
           this.feedback = {type: 'warning', message: 'Error deleting.'};
         }
-      );
+      });
     }
   }
 }
