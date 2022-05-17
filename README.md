@@ -27,6 +27,7 @@ Follow the steps below to see how this library works, or [watch this screencast]
    ```
    cd angular-crud
    npm install
+   npm run build
    npm pack
    ```
    
