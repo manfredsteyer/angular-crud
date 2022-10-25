@@ -16,7 +16,7 @@ import * as crudModelUtils from '../utils/crud-model-utils'
 
 import { CrudOptions } from './schema';
 import { CrudModel } from './model';
-import { classify } from '@angular-devkit/core/src/utils/strings';
+import { classify, underscore } from '@angular-devkit/core/src/utils/strings';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { addModuleImportToModule } from '@angular/cdk/schematics';
 
@@ -71,13 +71,15 @@ export function generate(options: CrudOptions): Rule {
 
     const modelJson = modelBuffer.toString('utf-8');
     const model = JSON5.parse(modelJson) as CrudModel;
+    const folderName = options.name
 
     // add imports to app.module.ts
     addModuleImportToModule(host,
       `${appPath}/app.module.ts`,
       `${classify(model.entity)}Module`,
-      `./${options.name}/${model.entity}.module`);
+      `./${folderName}/${model.entity}.module`);
 
+    options.name = underscore(options.name)
     const templateSource = apply(url(`./files/${cssFramework}`), [
       template({
         ...stringUtils,
@@ -85,7 +87,7 @@ export function generate(options: CrudOptions): Rule {
         ...crudModelUtils as any,
         model
       }),
-      move(`${appPath}/${options.name}`),
+      move(`${appPath}/${folderName}`),
     ]);
 
     return mergeWith(templateSource, MergeStrategy.Overwrite);
