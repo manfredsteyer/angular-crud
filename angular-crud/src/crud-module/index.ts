@@ -16,7 +16,7 @@ import * as crudModelUtils from '../utils/crud-model-utils'
 
 import { CrudOptions } from './schema';
 import { CrudModel } from './model';
-import { capitalize } from '@angular-devkit/core/src/utils/strings';
+import { classify } from '@angular-devkit/core/src/utils/strings';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { addModuleImportToModule } from '@angular/cdk/schematics';
 
@@ -75,7 +75,7 @@ export function generate(options: CrudOptions): Rule {
     // add imports to app.module.ts
     addModuleImportToModule(host,
       `${appPath}/app.module.ts`,
-      `${capitalize(model.entity)}Module`,
+      `${classify(model.entity)}Module`,
       `./${options.name}/${model.entity}.module`);
 
     const templateSource = apply(url(`./files/${cssFramework}`), [
