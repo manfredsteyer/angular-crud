@@ -1,10 +1,10 @@
 {
-    "schematics": {
-      "menu": {
-        "aliases": [ "crud-module" ],
-        "factory": "./crud-module/index#generate",
-        "description": "Generates a crud module",
-        "schema": "./crud-module/schema.json"
-      }
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "crud-module": {
+      "factory": "./crud-module/index#generate",
+      "description": "Generates a crud module",
+      "schema": "./crud-module/schema.json"
     }
+  }
 }
