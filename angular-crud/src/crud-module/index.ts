@@ -19,6 +19,7 @@ import { CrudModel } from './model';
 import { capitalize } from '@angular-devkit/core/src/utils/strings';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { addModuleImportToModule } from '@angular/cdk/schematics';
+import { enrichWithTsModel } from '../utils/crud-model-utils';
 
 export const BOOTSTRAP = 'bootstrap';
 export const MATERIAL = 'material';
@@ -63,14 +64,23 @@ export function generate(options: CrudOptions): Rule {
     const appPath = `${project?.sourceRoot}/app`;
 
     const modelFile = `${appPath}/${options.name}/${options.model}`;
-    const modelBuffer = host.read(modelFile);
+    const tsModelFile = `${appPath}/${options.name}/${options.modelTs}`;
 
+    if(!host.exists(modelFile) && !host.exists(tsModelFile)) {
+      throw new SchematicsException(`No model file exists.`);
+    }
+
+    const modelBuffer = host.read(modelFile);
     if (modelBuffer === null) {
       throw new SchematicsException(`Model file ${options.model} does not exist.`);
     }
 
     const modelJson = modelBuffer.toString('utf-8');
     const model = JSON5.parse(modelJson) as CrudModel;
+
+    if(host.exists(tsModelFile)) {
+      enrichWithTsModel(model, tsModelFile);
+    }
 
     // add imports to app.module.ts
     addModuleImportToModule(host,

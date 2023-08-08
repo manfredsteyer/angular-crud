@@ -47,6 +47,16 @@
         "default": "model.json",
         "description": "Model describing the crud form"
       },
+      "modelTs":{
+        "type":"string",
+        "default": "model.ts",
+        "description": "TypeScript model file for the crud form"
+      },
+      "modelType":{
+        "type":"string",
+        "default": "json",
+        "description": "JSON or TS model file (values 'json' or 'ts')"
+      },
       "style": {
         "type": "string",
         "default": "paper-dashboard"
