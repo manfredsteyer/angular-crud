@@ -7,5 +7,7 @@ export interface CrudOptions {
   module: string;
   export: boolean;
   model: string;
+  modelTs: string;
+  modelType: string;
   style: string;
 }
